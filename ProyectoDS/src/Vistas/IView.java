@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelos;
+package Vistas;
+
+import java.util.Map;
 
 /**
  *
- * @author Jose Leonardo
+ * @author SANTOS
  */
-public class Vendedor extends Usuario{
-    
+public interface IView {
+    void setData(Map mapa);
+    Map getData();
+    void showMe();
+    void close();
 }

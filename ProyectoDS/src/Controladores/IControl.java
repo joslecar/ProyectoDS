@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelos;
+package Controladores;
+
+import javafx.event.Event;
 
 /**
  *
- * @author Jose Leonardo
+ * @author SANTOS
  */
-public class Vendedor extends Usuario{
-    
+public interface IControl {
+    Event getEvent();
+    void cancelEvent();
 }
