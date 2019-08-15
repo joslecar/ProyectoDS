@@ -5,10 +5,32 @@
  */
 package Vistas;
 
+import java.util.Map;
+
 /**
  *
  * @author SANTOS
  */
-public class ViewRepartidor {
+public class ViewRepartidor  implements IView{
+
+    @Override
+    public void setData(Map mapa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Map getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showMe() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
