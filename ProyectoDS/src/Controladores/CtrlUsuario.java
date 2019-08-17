@@ -49,8 +49,10 @@ public class CtrlUsuario  implements IControl{
     private List<Producto>cargarProductos(String query){
         ConexionMySQL canalSQL=new ConexionMySQL();
         cnp=canalSQL.conectarMySQL("127.0.0.1", "DSdatabase", "root", "secret");
+        
         Producto p=null;
         List<Producto>products = null;
+        
         try{
             Statement s = cnp.createStatement();
             ResultSet re = s.executeQuery(query);
