@@ -15,7 +15,7 @@ public class FactoryUsuario {
     private String VENDEDOR;
     private String JEFEBODEGA;
     
-    public LUsuario createUsuario(String USuario, String contrasena){
+    public IUsuario createUsuario(String USuario, String contrasena){
     
         return null;
     }

@@ -25,10 +25,14 @@ import javafx.scene.layout.VBox;
 public class ViewLocal  implements IView{
     //En realidad son productos pero una View no tiene contacto directo con el Model
     private ListView<String> lvProductos;
-    private TextField txtBusqueda;
+    private TextField txtBuscarNombre;
+    private TextField txtBuscarCategoria;
+    private TextField txtBuscarDescripcion;
     //setWrapText para multilinea
     private Label lblProductoEncontrado;
-    private Button btnBuscar;
+    private Button btnBuscarNombre;
+    private Button btnBuscarDescrip;
+    private Button btnBuscarCategoria;
     private Button btnCotizacion;
     private Button btnVenta;
     private Button btnReporteEnvio;
@@ -39,15 +43,21 @@ public class ViewLocal  implements IView{
     
     public ViewLocal(){
         createListView();
-        txtBusqueda=new TextField();
-        btnBuscar=new Button("Buscar");
+        txtBuscarNombre=new TextField();
+        txtBuscarDescripcion=new TextField();
+        txtBuscarCategoria=new TextField();
+        
+        btnBuscarNombre=new Button("Buscar por Nombre");
+        btnBuscarDescrip=new Button("Buscar por Descripcion");
+        btnBuscarCategoria=new Button("Buscar por Categoria");
+        
         lblProductoEncontrado=new Label("Producto: ");
         btnCotizacion=new Button("Cotizacion");
         btnVenta=new Button("Venta");
         btnReporteEnvio=new Button("Reporte/Envio");
         
         filas=new VBox();
-        filas.getChildren().addAll(txtBusqueda,btnBuscar,lblProductoEncontrado,btnCotizacion,btnVenta,btnReporteEnvio);
+        filas.getChildren().addAll(txtBuscarNombre,btnBuscarNombre,txtBuscarDescripcion,btnBuscarDescrip,txtBuscarCategoria,btnBuscarCategoria,lblProductoEncontrado,btnCotizacion,btnVenta,btnReporteEnvio);
         columnas=new HBox();
         columnas.getChildren().addAll(lvProductos,filas);
         
