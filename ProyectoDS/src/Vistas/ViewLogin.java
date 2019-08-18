@@ -20,14 +20,12 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class ViewLogin  extends ViewMenu{
-    private CtrlUsuario user;
-    private IManejadorMenu next;
+  
     private Label lblUser;
     private Label lblPass;
     private TextField txtUser;
     private PasswordField passPass;
     private Button btnIniSesion;
-    private Scene scene;
     private GridPane panel;
    
     public ViewLogin( Stage stg){
@@ -70,10 +68,7 @@ public class ViewLogin  extends ViewMenu{
     
     @Override
     protected boolean puedeManejarlo(String manejador) {
-        if(manejador.toLowerCase().equals("login")){
-            return true;
-        }
-        return false;
+        return manejador.toLowerCase().equals("login");
     }
     
     
@@ -84,26 +79,6 @@ public class ViewLogin  extends ViewMenu{
     
     
     
-    @Override
-    public void setData(Map mapa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Map getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    @Override
-    public void close() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNext(IManejadorMenu mm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+ 
     
 }

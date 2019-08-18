@@ -13,6 +13,7 @@ public class Usuario {
     
     protected String usuario;
     protected String contrasena;
+    
     public Usuario(String usuario) {
         this.usuario = usuario;
     }

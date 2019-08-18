@@ -10,6 +10,7 @@ package Modelos;
  * @author Jose Leonardo
  */
 public class Gerente extends Usuario {
+    
     public Gerente(String usuario) {
         super(usuario);
     }

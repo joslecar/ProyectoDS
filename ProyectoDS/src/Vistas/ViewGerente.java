@@ -63,26 +63,9 @@ public class ViewGerente extends ViewMenu{
         return false;
     }
     
-    @Override
+   @Override
     public void showMe(){
         System.out.println("GERENTEEEEE");
-    }
-    
-    @Override
-    public void setData(Map mapa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Map getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-    @Override
-    public void close() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
