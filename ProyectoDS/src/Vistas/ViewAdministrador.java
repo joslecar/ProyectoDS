@@ -6,6 +6,10 @@
 package Vistas;
 
 import java.util.Map;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -13,8 +17,25 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class ViewAdministrador extends ViewMenu{
+    private Button ingStock;
+    private Button ingPVP;
+    private VBox botones;
+    private BorderPane panel;
+    
     public ViewAdministrador( Stage stg) {
         super( stg);
+       
+        ingStock= new Button("Ingresar Stock");
+        ingPVP= new Button("Ingresar PVP");
+        botones=new VBox();
+        panel=new BorderPane();
+        setRigth();
+        super.scene=new Scene(panel,300,300);
+    }
+    
+    private void setRigth(){
+        botones.getChildren().addAll(ingStock,ingPVP);
+        panel.setRight(botones);
     }
 
      @Override
@@ -37,8 +58,13 @@ public class ViewAdministrador extends ViewMenu{
 
     @Override
     public void showMe() {
+        this.setUser(user);
         System.out.println("ADMINISTRADOOORRR");
-        }
+        super.stg.setTitle("Administrador! "+super.user);
+        super.stg.setScene(super.scene);
+        super.stg.show();
+        
+    }
 
     @Override
     public void close() {

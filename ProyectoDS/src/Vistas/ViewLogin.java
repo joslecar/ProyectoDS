@@ -57,9 +57,9 @@ public class ViewLogin  extends ViewMenu{
         btnIniSesion.setOnAction((e)->{
             user.buscarUsuario(txtUser.getText(), passPass.getText());
             System.out.println("Elegir Menu GAJBV");
-            IManejadorMenu m=pedirManejador(user);
-            user.setLogin(m);
-            user.init();
+            IManejadorMenu m=pedirManejador(super.user);
+            super.user.setLogin(m);
+            super.user.init();
 
         });
                     }catch(Exception ex){
