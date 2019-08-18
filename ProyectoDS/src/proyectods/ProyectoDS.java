@@ -50,7 +50,7 @@ public class ProyectoDS extends Application{
         ViewMenu administrador=new ViewAdministrador(primaryStage);
         ViewMenu jefeBodega=new ViewJefeBodega(primaryStage);
         ViewMenu vendedor=new ViewVendedor(primaryStage);
-        login.setNext(gerente);gerente.setNext(administrador);jefeBodega.setNext(vendedor);vendedor.setNext(null);
+        login.setNext(gerente);gerente.setNext(administrador);administrador.setNext(jefeBodega);jefeBodega.setNext(vendedor);vendedor.setNext(null);
         
         CtrlUsuario user=new CtrlUsuario( login,j, primaryStage);
         user.init();
