@@ -40,7 +40,7 @@ public class ViewGerente extends ViewMenu{
         this.derecho= new VBox();
         derecho.getChildren().addAll(btnAsignarAdmin,btnAbastecimiento,btnUsuarios,btnEnvios,btnProductos,btnVentas);
         llenarDerecho();
-        scene= new Scene(panel,600,500);
+        super.scene=new Scene(panel,600,500);
     }
     
     private void llenarDerecho(){
@@ -66,6 +66,10 @@ public class ViewGerente extends ViewMenu{
    @Override
     public void showMe(){
         System.out.println("GERENTEEEEE");
+        this.setUser(user);
+        super.stg.setTitle("Gerente! "+super.user);
+        super.stg.setScene(super.scene);
+        super.stg.show();
     }
     
 }
