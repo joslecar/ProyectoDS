@@ -13,12 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  *
  * @author SANTOS
  */
-public class ViewLogin  implements IView,IManejadorMenu{
+public class ViewLogin  extends ViewMenu{
     private CtrlUsuario user;
     private IManejadorMenu next;
     private Label lblUser;
@@ -29,7 +30,9 @@ public class ViewLogin  implements IView,IManejadorMenu{
     private Scene scene;
     private GridPane panel;
    
-    public ViewLogin(){
+    public ViewLogin( Stage stg){
+        super(stg);
+        
         lblUser=new Label("Usuario: ");
         lblPass=new Label("Contraseña: ");
         txtUser=new TextField();
@@ -41,9 +44,38 @@ public class ViewLogin  implements IView,IManejadorMenu{
         panel.add(lblPass, 1,2 );panel.add(passPass, 2,2 );
         panel.add(btnIniSesion, 1,3, 2,1);
         
-        scene=new Scene(panel,300,300);
+        super.scene=new Scene(panel,300,300);
         
     }
+    
+    @Override
+    public void showMe(){
+        //super.scene=new Scene(panel,300,300);
+        stg.setTitle("Bienvenido! ");
+        stg.setScene(super.scene);
+        stg.show();
+                    try{
+
+        btnIniSesion.setOnAction((e)->{
+            System.out.println("Elegir Menu GAJBV");
+            IManejadorMenu m=pedirManejador(user);
+            user.setLogin(m);
+            user.init();
+
+        });
+                    }catch(Exception ex){
+                        System.err.println("EXCEPCION btnIniSesion");
+            }
+    }
+    
+    @Override
+    protected boolean puedeManejarlo(String manejador) {
+        if(manejador.toLowerCase().equals("login")){
+            return true;
+        }
+        return false;
+    }
+    
     
     public Scene getScene(){
         return scene;
@@ -62,11 +94,7 @@ public class ViewLogin  implements IView,IManejadorMenu{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void showMe() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @Override
     public void close() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -77,14 +105,5 @@ public class ViewLogin  implements IView,IManejadorMenu{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public IManejadorMenu pedirManejadorMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean puedeManejarlo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

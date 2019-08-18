@@ -5,7 +5,14 @@
  */
 package Controladores;
 
+import Modelos.Administrador;
+import Modelos.Gerente;
+import Modelos.JefeBodega;
 import Modelos.Producto;
+import Modelos.Usuario;
+import Modelos.Vendedor;
+import Vistas.IManejadorMenu;
+import Vistas.ViewMenu;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +21,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
+import javafx.stage.Stage;
 
 /**
  *
@@ -21,7 +29,40 @@ import javafx.event.Event;
  */
 public class CtrlUsuario  implements IControl{
    Connection cnp=null;
-  
+   private ViewMenu login;
+   private Usuario user;
+   private Stage stg;
+
+    public CtrlUsuario(ViewMenu login,Usuario user,Stage stg) {
+        this.login = login;
+        this.user = user;
+        this.stg=stg;
+    }
+    
+    public void init(){
+       this.login.setUser(this);
+       this.login.showMe();
+    }
+    public void setLogin(IManejadorMenu login){
+        this.login=(ViewMenu) login;
+    }
+    
+    public String elegirMenu(){
+        if(user instanceof Gerente){
+            System.out.println("G");
+            return "g";
+        }else if(user instanceof Administrador){
+            System.out.println("A");
+            return "a";
+        }else if(user instanceof JefeBodega){
+            System.out.println("JB");
+            return "jb";
+        }else if(user instanceof Vendedor){
+            System.out.println("V");
+            return "v";
+        }
+        return "";
+    }
    
     @Override
     public Event getEvent() {

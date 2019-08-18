@@ -10,5 +10,7 @@ package Modelos;
  * @author Jose Leonardo
  */
 public class JefeBodega extends Usuario{
-    
+    public JefeBodega(String usuario) {
+        super(usuario);
+    }
 }

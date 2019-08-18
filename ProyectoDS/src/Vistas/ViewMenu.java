@@ -5,23 +5,52 @@
  */
 package Vistas;
 
+import Controladores.CtrlUsuario;
 import java.util.Map;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
  *
  * @author SANTOS
  */
-public class ViewAdministrador extends ViewMenu{
-    public ViewAdministrador( Stage stg) {
-        super( stg);
+public class ViewMenu implements IManejadorMenu,IView{
+    protected IManejadorMenu next;
+    protected CtrlUsuario user;
+    protected Stage stg;
+    protected Scene scene;
+
+    public ViewMenu(Stage stg) {
+        
+        this.stg = stg;
+        this.scene=null;
+        this.next=null;
+    }
+    
+    @Override
+    public void setNext(IManejadorMenu mm) {
+        this.next=mm;
+    }
+    
+    public void setUser(CtrlUsuario user) {
+        this.user=user;
     }
 
-     @Override
+    @Override
+    public IManejadorMenu pedirManejador(CtrlUsuario user) {
+        if(this.puedeManejarlo(user.elegirMenu())){return this;}
+        if(this.next==null){return null;}
+        
+        return this.next.pedirManejador(user);
+    }
+
+    @Override
+    public void showMe() {
+        System.out.println("Muestra la pantalla");
+    }
+
     protected boolean puedeManejarlo(String manejador) {
-        if(manejador.toLowerCase().equals("a")){
-            return true;
-        }
+                System.out.println("Menu no puede manejarlo");
         return false;
     }
 
@@ -32,11 +61,6 @@ public class ViewAdministrador extends ViewMenu{
 
     @Override
     public Map getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void showMe() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

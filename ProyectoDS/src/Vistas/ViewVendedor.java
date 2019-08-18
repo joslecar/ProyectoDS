@@ -6,13 +6,26 @@
 package Vistas;
 
 import java.util.Map;
+import javafx.stage.Stage;
 
 /**
  *
  * @author SANTOS
  */
 public class ViewVendedor extends ViewLogin  implements IView{
+    
+    public ViewVendedor(Stage stg) {
+        super(stg);
+    }
 
+     @Override
+    protected boolean puedeManejarlo(String manejador) {
+        if(manejador.toLowerCase().equals("v")){
+            return true;
+        }
+        return false;
+    }
+    
     @Override
     public void setData(Map mapa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

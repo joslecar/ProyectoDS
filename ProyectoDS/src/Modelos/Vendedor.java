@@ -10,5 +10,8 @@ package Modelos;
  * @author Jose Leonardo
  */
 public class Vendedor extends Usuario{
+    public Vendedor(String usuario) {
+        super(usuario);
+    }
     
 }

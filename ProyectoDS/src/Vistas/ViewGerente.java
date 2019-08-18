@@ -11,12 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
  * @author SANTOS
  */
-public class ViewGerente extends ViewLogin  implements IView{
+public class ViewGerente extends ViewMenu{
     private BorderPane panel;
     private Scene scene;
     private Button btnAbastecimiento;
@@ -27,7 +28,8 @@ public class ViewGerente extends ViewLogin  implements IView{
     private Button btnVentas;
     private VBox derecho;
 
-    public ViewGerente() {
+    public ViewGerente(Stage stg) {
+        super(stg);
         this.btnAbastecimiento = new Button("Abzastecimiento");
         this.btnAsignarAdmin = new Button("Asignar Admin");
         this.btnUsuarios = new Button("Usuarios");
@@ -53,6 +55,19 @@ public class ViewGerente extends ViewLogin  implements IView{
         return scene;
     }
     
+     @Override
+    protected boolean puedeManejarlo(String manejador) {
+        if(manejador.toLowerCase().equals("g")){
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
+    public void showMe(){
+        System.out.println("GERENTEEEEE");
+    }
+    
     @Override
     public void setData(Map mapa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -63,10 +78,7 @@ public class ViewGerente extends ViewLogin  implements IView{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void showMe() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     @Override
     public void close() {

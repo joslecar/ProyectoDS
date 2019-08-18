@@ -5,13 +5,15 @@
  */
 package Vistas;
 
+import Controladores.CtrlUsuario;
+
 
 /**
  *
  * @author CltControl
  */
 public interface IManejadorMenu {
+    
     void setNext(IManejadorMenu mm);
-    IManejadorMenu pedirManejadorMenu();
-    boolean puedeManejarlo();
+    IManejadorMenu pedirManejador(CtrlUsuario user);
 }
