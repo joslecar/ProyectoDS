@@ -15,7 +15,7 @@ import Vistas.Complementos.ViewRegistrar;
 import Vistas.ViewAdministrador;
 import Vistas.ViewGerente;
 import Vistas.ViewJefeBodega;
-import Vistas.ViewLocal;
+import Vistas.ViewBusquedas;
 import Vistas.ViewLogin;
 import Vistas.ViewMenu;
 import Vistas.ViewVendedor;
