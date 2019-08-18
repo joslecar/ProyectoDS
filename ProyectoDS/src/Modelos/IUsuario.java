@@ -9,16 +9,6 @@ package Modelos;
  *
  * @author Jose Leonardo
  */
-public class Usuario {
-    protected String usuario;
-    protected String contrasena;
-    
-    public IUsuario createUsuario(){
-        return null;
-    }
-    
-    public boolean volverOnline(){
-        return false;
-    }
-    
+public interface IUsuario {
+    public void RecuperarContrasena();
 }

@@ -35,7 +35,7 @@ public class ProyectoDS extends Application{
         ViewLocal local= new ViewLocal();
         ViewGerente gerente=new ViewGerente();
         primaryStage.setTitle("Pantalla de prueba");
-        primaryStage.setScene(gerente.getScene());
+        primaryStage.setScene(local.getScene());
         primaryStage.show();
     }
     
