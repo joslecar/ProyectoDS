@@ -37,6 +37,7 @@ public class CtrlUsuario  implements IControl{
 
     public CtrlUsuario(ViewMenu login,Usuario user,Stage stg) {
         this.login = login;
+        this.login.setUser(this);
         this.user = user;
         this.stg=stg;
     }

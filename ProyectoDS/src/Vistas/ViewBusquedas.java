@@ -5,7 +5,9 @@
  */
 package Vistas;
 
+import Controladores.CtrlUsuario;
 import Modelos.Producto;
+import java.util.List;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,14 +24,16 @@ import javafx.scene.layout.VBox;
  *
  * @author SANTOS
  */
-public class ViewLocal  implements IView{
+public class ViewBusquedas  implements IView{
     //En realidad son productos pero una View no tiene contacto directo con el Model
-    private ListView<String> lvProductos;
+    private ListView<Producto> lvProductos;
+    
     private TextField txtBuscarNombre;
     private TextField txtBuscarCategoria;
     private TextField txtBuscarDescripcion;
     //setWrapText para multilinea
     private Label lblProductoEncontrado;
+    
     private Button btnBuscarNombre;
     private Button btnBuscarDescrip;
     private Button btnBuscarCategoria;
@@ -39,10 +43,15 @@ public class ViewLocal  implements IView{
     
     private HBox columnas;
     private VBox filas;
+    
     private Scene sc;
     
-    public ViewLocal(){
-        createListView();
+    private CtrlUsuario user;
+    private List<Producto> products;
+    
+    
+    public ViewBusquedas(){
+        
         txtBuscarNombre=new TextField();
         txtBuscarDescripcion=new TextField();
         txtBuscarCategoria=new TextField();
@@ -52,25 +61,44 @@ public class ViewLocal  implements IView{
         btnBuscarCategoria=new Button("Buscar por Categoria");
         
         lblProductoEncontrado=new Label("Producto: ");
-        btnCotizacion=new Button("Cotizacion");
-        btnVenta=new Button("Venta");
-        btnReporteEnvio=new Button("Reporte/Envio");
+        
         
         filas=new VBox();
-        filas.getChildren().addAll(txtBuscarNombre,btnBuscarNombre,txtBuscarDescripcion,btnBuscarDescrip,txtBuscarCategoria,btnBuscarCategoria,lblProductoEncontrado,btnCotizacion,btnVenta,btnReporteEnvio);
+        filas.getChildren().addAll(txtBuscarNombre,btnBuscarNombre,txtBuscarDescripcion,btnBuscarDescrip,txtBuscarCategoria,btnBuscarCategoria,lblProductoEncontrado);
         columnas=new HBox();
-        columnas.getChildren().addAll(lvProductos,filas);
+        columnas.getChildren().addAll(lvProductos,filas);                  
         
+        createListView(products);
         sc=new Scene(columnas, 500, 500);
+        
+        btnBuscarNombre.setOnMouseClicked(e -> {
+            products = user.buscarArticuloNom(txtBuscarNombre.getText());
+            
+        });  
+        btnBuscarDescrip.setOnMouseClicked(e -> {
+            products = user.buscarArticuloNom(txtBuscarDescripcion.getText());
+            
+        });
+        btnBuscarCategoria.setOnMouseClicked(e -> {
+            products = user.buscarArticuloNom(txtBuscarCategoria.getText());
+            
+        });
+        
+        lvProductos.setOnMouseClicked(e ->  {
+            ObservableList<Producto> selectedItems =  lvProductos.getSelectionModel().getSelectedItems();
+            for(Producto p : selectedItems){
+                System.out.println("selected item " + p);
+                lblProductoEncontrado.setText("Producto Seleccionado; " + p);
+            }
+        });
+
         
         
     }
-    private void createListView(){
+    private void createListView(List l){
          // To Creating a Observable List
-        ObservableList<String> productos = FXCollections.observableArrayList(
-                "P1", "P2","P3","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4"
-                ,"P1","P2","P3","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4");
- 
+        ObservableList<Producto> productos = FXCollections.observableArrayList();
+        productos.addAll(l);
         // Create a ListView
         lvProductos = new ListView<>(productos);
     }
@@ -78,6 +106,8 @@ public class ViewLocal  implements IView{
     public Scene getScene(){
         return sc;
     }
+    
+    
     @Override
     public void setData(Map mapa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
