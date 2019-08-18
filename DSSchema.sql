@@ -1,4 +1,4 @@
-#create database DSdatabase;
+create database DSdatabase;
 
 use DSdatabase;
 

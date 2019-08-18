@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 /**
@@ -46,6 +48,28 @@ public class CtrlUsuario  implements IControl{
     public void setLogin(IManejadorMenu login){
         this.login=(ViewMenu) login;
     }
+    public void buscarUsuario(String usuario, String pass){
+        ConexionMySQL conexion = new ConexionMySQL();
+        cnp = conexion.conectarMySQL("192.168.99.100", "DSdatabase", "root", "secret");
+        //Usuario u = null;
+        try{
+            Statement s = cnp.createStatement();
+            ResultSet re = s.executeQuery("select * from Empleado where usuario ='"+usuario+"' and pass = '"+pass+"'");
+            if(re != null){
+                while(re.next()){              
+                    user = seleccionarUsuario(new Usuario(re.getString("usuario")),re.getString("Tipo"));
+                }
+            }else{
+                Alert a = new Alert(AlertType.WARNING);
+                a.setTitle("Error credenciales");
+                a.setHeaderText("Verificar credenciales");
+                a.setContentText("No se encontraron datos con su usuario o contraseña");
+            }
+            cnp.close();
+        } catch (SQLException ex) {
+           Logger.getLogger(CtrlUsuario.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
     
     public String elegirMenu(){
         if(user instanceof Gerente){
@@ -64,6 +88,21 @@ public class CtrlUsuario  implements IControl{
         return "";
     }
    
+    public Usuario seleccionarUsuario(Usuario usuario, String tipo){
+       switch (tipo) {
+           case "VEND-1000":
+               return new Vendedor(usuario.getUsuario());
+           case "GER-1000":
+               return new Gerente(usuario.getUsuario());
+           case "ADMIN-100":
+               return new Administrador(usuario.getUsuario());
+           case "JFBOD-100":
+               return new JefeBodega(usuario.getUsuario());
+           default:
+               break;
+       }
+        return null;
+    }
     @Override
     public Event getEvent() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

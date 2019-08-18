@@ -55,7 +55,7 @@ public class ConexionMySQL {
     
     public Connection conectarMySQL(String hostname, String database, String username, String password) {
         conn = null;
-        String url = "jdbc:sqlserver://"+ hostname +":1433;databaseName="+database+";user="+username+";password="+password;
+        String url = "jdbc:mysql://"+ hostname +":33060/"+database+"?useSSL=false";
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, username, password);
