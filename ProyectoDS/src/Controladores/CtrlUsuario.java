@@ -51,7 +51,7 @@ public class CtrlUsuario  implements IControl{
     }
     public void buscarUsuario(String usuario, String pass){
         ConexionMySQL conexion = new ConexionMySQL();
-        cnp = conexion.conectarMySQL("192.168.99.100", "DSdatabase", "root", "secret");
+        cnp = conexion.conectarMySQL("192.168.99.100","33060", "DSdatabase", "root", "secret");
         //Usuario u = null;
         try{
             Statement s = cnp.createStatement();
@@ -129,7 +129,7 @@ public class CtrlUsuario  implements IControl{
     
     private List<Producto>cargarProductos(String query){
         ConexionMySQL canalSQL=new ConexionMySQL();
-        cnp=canalSQL.conectarMySQL("127.0.0.1", "DSdatabase", "root", "secret");
+        cnp=canalSQL.conectarMySQL("127.0.0.1", "33060","DSdatabase", "root", "secret");
         
         Producto p=null;
         List<Producto>products = null;

@@ -18,46 +18,15 @@ import java.sql.SQLException;
 public class ConexionMySQL {
 
     // Librería de MySQL
-    public String driver = "com.mysql.jdbc.Driver";
-
-    // Nombre de la base de datos
-    public String database = "databaseDS";
-
-    // Host
-    public String hostname = "localhost";
-
-    // Puerto
-    public String port = "3306";
-
-    // Ruta de nuestra base de datos 
-    public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
-
-    // Nombre de usuario
-    public String username = "root";
-
-    // Clave de usuario
-    public String password = "rootpass1";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static Connection conn;
     
-    public Connection conn;
     //Metodo para iniciar la conexion
-    public Connection conectarMySQL() {
+    public Connection conectarMySQL(String hostname, String port,String database, String username, String password) {
         conn = null;
-
+        String url = "jdbc:mysql://"+ hostname +":"+port+"/"+database+"?useSSL=false";
         try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-        
-        return conn;
-    }
-    
-    public Connection conectarMySQL(String hostname, String database, String username, String password) {
-        conn = null;
-        String url = "jdbc:mysql://"+ hostname +":33060/"+database+"?useSSL=false";
-        try {
-            Class.forName(driver);
+            Class.forName(DRIVER);
             conn = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
