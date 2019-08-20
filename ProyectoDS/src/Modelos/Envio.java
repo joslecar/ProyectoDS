@@ -5,13 +5,15 @@
  */
 package Modelos;
 
-import java.util.List;
-
 /**
  *
  * @author CltControl
  */
-public class RutaDeEntrega {
-    private String descripcion;
-    private List<String> envios;
+public class Envio {
+
+    //cliente
+    //venta
+   // repartidor
+     
+    
 }
