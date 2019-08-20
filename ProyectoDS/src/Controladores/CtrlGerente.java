@@ -5,10 +5,20 @@
  */
 package Controladores;
 
+import Modelos.Usuario;
+import Vistas.ViewMenu;
+import javafx.stage.Stage;
+
 /**
  *
  * @author Jose Leonardo
  */
-public class CtrlGerente {
+public class CtrlGerente extends CtrlUsuario{
     
+    public CtrlGerente(ViewMenu login, Usuario user, Stage stg) {
+        super(login, user, stg);
+    }
+    public CtrlGerente(Usuario user){
+        super(user);
+    }
 }

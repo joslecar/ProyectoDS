@@ -32,60 +32,41 @@ import javafx.stage.Stage;
  */
 public class CtrlUsuario  implements IControl{
    Connection cnp=null;
-   private ViewMenu login;
+   private ViewMenu menu;
    private Usuario user;
    private Stage stg;
 
     public CtrlUsuario(ViewMenu login,Usuario user,Stage stg) {
-        this.login = login;
-        this.login.setUser(this);
+        this.menu = login;
+        this.menu.setUser(this);
         this.user = user;
         this.stg=stg;
     }
+    public CtrlUsuario(Usuario u){
+        this.user=u;
+    }
+    public  CtrlUsuario getUsuario(){
+        if(user instanceof Administrador){
+            return new CtrlAdministrador(user);
+        }else if(user instanceof Gerente){
+            return new CtrlGerente(user);
+        }else if(user instanceof JefeBodega){
+            return new CtrlJefeBodega(user);
+        }else if (user instanceof Vendedor){
+            return new CtrlVendedor(user);
+        }
+        return null;
+        
+    }
     
     public void init(){
-       this.login.setUser(this);
-       this.login.showMe();
+       this.menu.setUser(this);
+       this.menu.showMe();
     }
-    public void setLogin(IManejadorMenu login){
-        this.login=(ViewMenu) login;
-    }
-    public void buscarUsuario(String usuario, String pass){
-        ConexionMySQL conexion = new ConexionMySQL();
-        cnp = conexion.conectarMySQL("192.168.99.100","33060", "DSdatabase", "root", "secret");
-
-        //Usuario u = null;
-        try{
-            Statement s = cnp.createStatement();
-            ResultSet re = s.executeQuery("select * from Empleado where usuario ='"+usuario+"' and pass = '"+pass+"'"); 
-                while(re.next()){
-                    user = seleccionarUsuario(new Usuario(re.getString("usuario")),re.getString("Tipo"));
-                }
-            cnp.close();
-        } catch (SQLException ex) {
-           Logger.getLogger(CtrlUsuario.class.getName()).log(Level.SEVERE, null, ex);
-       }
+    public void setLogin(IManejadorMenu mm){
+        this.menu=(ViewMenu) mm;
     }
     
-    public Usuario elegirMenu(){
-        return user;
-    }
-   
-    public Usuario seleccionarUsuario(Usuario usuario, String tipo){
-       switch (tipo) {
-           case "VEND-1000":
-               return new Vendedor(usuario.getUsuario());
-           case "GER-1000":
-               return new Gerente(usuario.getUsuario());
-           case "ADMIN-100":
-               return new Administrador(usuario.getUsuario());
-           case "JFBOD-100":
-               return new JefeBodega(usuario.getUsuario());
-           default:
-               break;
-       }
-        return null;
-    }
     @Override
     public Event getEvent() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -111,7 +92,8 @@ public class CtrlUsuario  implements IControl{
     
     private List<Producto> cargarProductos(String query){
         ConexionMySQL canalSQL=new ConexionMySQL();
-        cnp=canalSQL.conectarMySQL("192.168.99.100", "33060","DSdatabase", "root", "secret");
+        //cnp=canalSQL.conectarMySQL("192.168.99.100", "33060","DSdatabase", "root", "secret");
+        cnp=canalSQL.conectarMySQL();
         Producto p=null;
         List<Producto>products = new ArrayList<>();
         

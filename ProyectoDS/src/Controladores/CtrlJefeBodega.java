@@ -5,10 +5,22 @@
  */
 package Controladores;
 
+import Modelos.Usuario;
+import Vistas.ViewMenu;
+import javafx.stage.Stage;
+
 /**
  *
  * @author SANTOS
  */
-public class CtrlJefeBodega {
+public class CtrlJefeBodega extends CtrlUsuario{
+    
+    public CtrlJefeBodega(ViewMenu login, Usuario user, Stage stg) {
+        super(login, user, stg);
+    }
+
+    public CtrlJefeBodega(Usuario u) {
+        super(u);
+    }
     
 }

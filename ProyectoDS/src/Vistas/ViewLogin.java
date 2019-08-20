@@ -7,6 +7,7 @@ package Vistas;
 
 import Controladores.CtrlLogin;
 import Controladores.CtrlUsuario;
+import Modelos.Usuario;
 import java.util.Map;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,6 +24,8 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class ViewLogin   implements IView{
+    private CtrlLogin clogin;
+    
     private Stage stg;
     private Label lblUser;
     private Label lblPass;
@@ -57,10 +60,17 @@ public class ViewLogin   implements IView{
         stg.show();
         try{
             btnIniSesion.setOnAction((e)->{
-                
-                CtrlLogin log=new CtrlLogin(this); 
+               
+                this.clogin=new CtrlLogin(this);
+                Usuario user=clogin.buscarUsuario(txtUser.getText(), passPass.getText());
+                if(user!=null){
+                    clogin.iniciarViews(user);
+                    
+                }else{
+                    txtUser.setText("");
+                    passPass.setText("");
+                }
                 /*
-                user.buscarUsuario(txtUser.getText(), passPass.getText());
  
                     System.out.println("Elegir Menu GAJBV");
                     IManejadorMenu m=pedirManejador(user);
@@ -74,8 +84,8 @@ public class ViewLogin   implements IView{
         }
     }
     
-    public Scene getScene(){
-        return scene;
+    public Stage getStage(){
+        return stg;
     }
 
     @Override

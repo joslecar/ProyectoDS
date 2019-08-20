@@ -38,7 +38,7 @@ public class ViewMenu implements IManejadorMenu,IView{
 
     @Override
     public IManejadorMenu pedirManejador(CtrlUsuario user) {
-        if(this.puedeManejarlo(user.elegirMenu())){
+        if(this.puedeManejarlo(user)){
             return this;
         }
         if(this.next==null){
@@ -52,7 +52,7 @@ public class ViewMenu implements IManejadorMenu,IView{
         System.out.println("Muestra la pantalla");
     }
 
-    protected boolean puedeManejarlo(Usuario user) {
+    protected boolean puedeManejarlo(CtrlUsuario user) {
         System.out.println("Menu no puede manejarlo");
         return false;
     }

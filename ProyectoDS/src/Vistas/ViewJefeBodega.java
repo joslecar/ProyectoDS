@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import Controladores.CtrlJefeBodega;
+import Controladores.CtrlUsuario;
 import Modelos.JefeBodega;
 import Modelos.Usuario;
 import java.util.Map;
@@ -59,8 +61,8 @@ public class ViewJefeBodega extends ViewMenu{
         lvEnvios = new ListView<>(envios);
     }
      @Override
-    protected boolean puedeManejarlo(Usuario manejador) {
-        return (manejador instanceof JefeBodega);
+    protected boolean puedeManejarlo(CtrlUsuario manejador) {
+        return (manejador instanceof CtrlJefeBodega);
     }
     @Override
     public void setData(Map mapa) {

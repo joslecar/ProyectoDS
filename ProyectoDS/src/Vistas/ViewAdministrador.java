@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import Controladores.CtrlAdministrador;
+import Controladores.CtrlUsuario;
 import Modelos.Administrador;
 import Modelos.Usuario;
 import java.util.Map;
@@ -43,8 +45,8 @@ public class ViewAdministrador extends ViewMenu{
     }
 
      @Override
-    protected boolean puedeManejarlo(Usuario manejador) {
-        return (manejador instanceof Administrador);
+    protected boolean puedeManejarlo(CtrlUsuario manejador) {
+        return (manejador instanceof CtrlAdministrador);
     }
 
     @Override
