@@ -1,7 +1,7 @@
-create database DSdatabase;
+#create database DSdatabase;
 
 use DSdatabase;
-
+#select * from Empleado;
 create table if not exists Producto(IDProducto varchar(10) PRIMARY KEY, 
 					Categoria varchar(20), 
 					Nombre varchar(50),
@@ -20,8 +20,8 @@ create table if not exists TipoEmpleado(IDTipo varchar(10) PRIMARY KEY,
 create table if not exists Empleado(IDEmpleado varchar(10) PRIMARY KEY,
 					Nombre varchar(100),
                     Apellido varchar(100),
-					FechaIngreso datetime,
-                    FechaNacimietno date,
+					FechaIngreso date,
+                    FechaNacimiento date,
                     Tipo varchar(10),
                     usuario varchar(100),
                     pass varchar(100),
@@ -66,7 +66,7 @@ create table if not exists ProductosXCotizacion(IDCotizacion varchar(10),
 create table if not exists Pago(IDPago varchar(10) PRIMARY KEY,
 				Total float);
 create table if not exists PagoPayPal(IDPago varchar(10),
-						Cuenta varchar(30),
+						Cuenta varchar(30) NOT NULL,
                         Detalle varchar(200),
                         Total float,
                         PRIMARY KEY(IDPago,Cuenta),
@@ -78,9 +78,9 @@ create table if not exists PagoEfectivo(IDPago varchar(10) PRIMARY KEY,
                         Total float,
                         foreign key (IDPago) references Pago(IDPago));
 create table if not exists PagoTarjeta(IDPago varchar(10),
-						IDTarjeta varchar(10),
-                        FechaExp varchar(7),
-                        CVV varchar(3),
+						IDTarjeta varchar(16) NOT NULL,
+                        FechaExp varchar(7) NOT NULL,
+                        CVV varchar(3) NOT NULL,
                         Detalle varchar(200),
                         Fecha Datetime,
                         Total float,
@@ -136,4 +136,4 @@ create table if not exists PagoRepartidor(IDPagoRep varchar(10) PRIMARY KEY,
                             Total float,
                             Fecha datetime,
                             foreign key (IDRepartidor) references Empleado(IDEmpleado));
-                    
+             

@@ -6,6 +6,7 @@
 package Vistas;
 
 import Controladores.CtrlUsuario;
+import Modelos.Usuario;
 import java.util.Map;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,11 +21,10 @@ public class ViewMenu implements IManejadorMenu,IView{
     protected Stage stg;
     protected Scene scene;
 
-    public ViewMenu(Stage stg) {
-        
+    public ViewMenu(Stage stg) {   
         this.stg = stg;
-        this.scene=null;
-        this.next=null;
+        this.scene = null;
+        this.next = null;
     }
     
     @Override
@@ -38,9 +38,12 @@ public class ViewMenu implements IManejadorMenu,IView{
 
     @Override
     public IManejadorMenu pedirManejador(CtrlUsuario user) {
-        if(this.puedeManejarlo(user.elegirMenu())){return this;}
-        if(this.next==null){return null;}
-        
+        if(this.puedeManejarlo(user.elegirMenu())){
+            return this;
+        }
+        if(this.next==null){
+            return null;
+        }  
         return this.next.pedirManejador(user);
     }
 
@@ -49,8 +52,8 @@ public class ViewMenu implements IManejadorMenu,IView{
         System.out.println("Muestra la pantalla");
     }
 
-    protected boolean puedeManejarlo(String manejador) {
-                System.out.println("Menu no puede manejarlo");
+    protected boolean puedeManejarlo(Usuario user) {
+        System.out.println("Menu no puede manejarlo");
         return false;
     }
 

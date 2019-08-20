@@ -8,6 +8,8 @@ package Vistas;
 import Controladores.CtrlUsuario;
 import java.util.Map;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -52,26 +54,21 @@ public class ViewLogin  extends ViewMenu{
         stg.setTitle("Bienvenido! ");
         stg.setScene(super.scene);
         stg.show();
-                    try{
+        try{
+            btnIniSesion.setOnAction((e)->{
+                user.buscarUsuario(txtUser.getText(), passPass.getText());
+ 
+                    System.out.println("Elegir Menu GAJBV");
+                    IManejadorMenu m=pedirManejador(user);
+                    user.setLogin(m);
+                    user.init();
+ 
 
-        btnIniSesion.setOnAction((e)->{
-            user.buscarUsuario(txtUser.getText(), passPass.getText());
-            System.out.println("Elegir Menu GAJBV");
-            IManejadorMenu m=pedirManejador(super.user);
-            super.user.setLogin(m);
-            super.user.init();
-
-        });
-                    }catch(Exception ex){
-                        System.err.println("EXCEPCION btnIniSesion");
-            }
+            });
+        }catch(Exception ex){
+            System.err.println("EXCEPCION btnIniSesion");
+        }
     }
-    
-    @Override
-    protected boolean puedeManejarlo(String manejador) {
-        return manejador.toLowerCase().equals("login");
-    }
-    
     
     public Scene getScene(){
         return scene;
