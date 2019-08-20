@@ -5,9 +5,12 @@
  */
 package Vistas;
 
+import Controladores.CtrlLogin;
 import Controladores.CtrlUsuario;
 import java.util.Map;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -19,18 +22,18 @@ import javafx.stage.Stage;
  *
  * @author SANTOS
  */
-public class ViewLogin  extends ViewMenu{
-  
+public class ViewLogin   implements IView{
+    private Stage stg;
     private Label lblUser;
     private Label lblPass;
     private TextField txtUser;
     private PasswordField passPass;
     private Button btnIniSesion;
     private GridPane panel;
+    private Scene scene;
    
     public ViewLogin( Stage stg){
-        super(stg);
-        
+        this.stg=stg;
         lblUser=new Label("Usuario: ");
         lblPass=new Label("Contraseña: ");
         txtUser=new TextField();
@@ -42,39 +45,52 @@ public class ViewLogin  extends ViewMenu{
         panel.add(lblPass, 1,2 );panel.add(passPass, 2,2 );
         panel.add(btnIniSesion, 1,3, 2,1);
         
-        super.scene=new Scene(panel,300,300);
+        scene=new Scene(panel,300,300);
         
     }
     
     @Override
     public void showMe(){
-        //super.scene=new Scene(panel,300,300);
+       
         stg.setTitle("Bienvenido! ");
-        stg.setScene(super.scene);
+        stg.setScene(this.scene);
         stg.show();
-                    try{
-
-        btnIniSesion.setOnAction((e)->{
-            user.buscarUsuario(txtUser.getText(), passPass.getText());
-            System.out.println("Elegir Menu GAJBV");
-            IManejadorMenu m=pedirManejador(super.user);
-            super.user.setLogin(m);
-            super.user.init();
-
-        });
-                    }catch(Exception ex){
-                        System.err.println("EXCEPCION btnIniSesion");
-            }
+        try{
+            btnIniSesion.setOnAction((e)->{
+                
+                CtrlLogin log=new CtrlLogin(this); 
+                /*
+                user.buscarUsuario(txtUser.getText(), passPass.getText());
+ 
+                    System.out.println("Elegir Menu GAJBV");
+                    IManejadorMenu m=pedirManejador(user);
+                    user.setLogin(m);
+                    user.init();
+ 
+*/
+            });
+        }catch(Exception ex){
+            System.err.println("EXCEPCION btnIniSesion");
+        }
     }
-    
-    @Override
-    protected boolean puedeManejarlo(String manejador) {
-        return manejador.toLowerCase().equals("login");
-    }
-    
     
     public Scene getScene(){
         return scene;
+    }
+
+    @Override
+    public void setData(Map mapa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Map getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

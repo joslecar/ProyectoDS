@@ -5,6 +5,11 @@
  */
 package Vistas;
 
+import Modelos.Gerente;
+import Modelos.Producto;
+import Modelos.Usuario;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +35,15 @@ public class ViewGerente extends ViewMenu{
     private Button btnEnvios;
     private Button btnProductos;
     private Button btnVentas;
+    private TextField txtBuscarNombre;
+    private TextField txtBuscarCategoria;
+    private TextField txtBuscarDescripcion;
+    private Button btnBuscarNombre;
+    private Button btnBuscarDescrip;
+    private Button btnBuscarCategoria;
+    private Button btnCotizacion;
+    private Button btnVenta;
+    private Button btnReporteEnvio;
         private Button btnBuscar;
         private TextField txtBusqueda;
         private ListView lvProductos;
@@ -38,9 +52,14 @@ public class ViewGerente extends ViewMenu{
 
     public ViewGerente(Stage stg) {
         super(stg);
-        this.btnBuscar=new Button("Buscar");
-        this.txtBusqueda=new TextField();
-        this.btnAbastecimiento = new Button("Abzastecimiento");
+        txtBuscarNombre=new TextField();
+        txtBuscarDescripcion=new TextField();
+        txtBuscarCategoria=new TextField();
+        
+        btnBuscarNombre=new Button("Buscar por Nombre");
+        btnBuscarDescrip=new Button("Buscar por Descripcion");
+        btnBuscarCategoria=new Button("Buscar por Categoria");
+        this.btnAbastecimiento = new Button("Abastecimiento");
         btnAbastecimiento.setVisible(false);
         this.btnAsignarAdmin = new Button("Asignar Admin");
         this.btnUsuarios = new Button("Usuarios");
@@ -49,10 +68,16 @@ public class ViewGerente extends ViewMenu{
         this.btnVentas = new Button("Ventas");
         this.panel = new BorderPane();
         this.derecho= new VBox();
-        derecho.getChildren().addAll(btnAsignarAdmin,btnUsuarios,btnEnvios,btnProductos,btnVentas,txtBusqueda,btnBuscar,btnAbastecimiento);
+        derecho.getChildren().addAll(btnAsignarAdmin,btnUsuarios,btnEnvios,btnProductos,btnVentas,txtBuscarCategoria,btnBuscarCategoria,txtBuscarNombre,btnBuscarNombre,btnAbastecimiento);
         llenarDerecho();
-        llenarCentro();
+        //llenarCentro();
         super.scene=new Scene(panel,600,500);
+        btnBuscarCategoria.setOnAction(e->{
+            createListView("Categoria");
+        });
+        btnBuscarNombre.setOnAction(e->{
+            createListView("Nombre");
+        });
     }
     
     private void llenarDerecho(){
@@ -63,24 +88,26 @@ public class ViewGerente extends ViewMenu{
 
     }
 private void llenarCentro(){
+    
     panel.setCenter(lvProductos);
 }
-private void createListView(){
+private void createListView(String tipo){
          // To Creating a Observable List
-        ObservableList<String> productos = FXCollections.observableArrayList(
-                "P1", "P2","P3","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4"
-                ,"P1","P2","P3","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4","P4");
- 
-        // Create a ListView
+        ObservableList<Producto> productos = FXCollections.observableArrayList();
+        if(tipo.equals("Categoria")){
+            productos = FXCollections.observableArrayList(user.buscarArticuloCat(txtBuscarCategoria.getText()));
+        }else if(tipo.equals("Nombre")){
+            productos = FXCollections.observableArrayList(user.buscarArticuloNom(txtBuscarNombre.getText()));
+        }
         lvProductos = new ListView<>(productos);
+        panel.setCenter(lvProductos);
     }
     public Scene getScene() {
         return scene;
     }
     
-     @Override
-    protected boolean puedeManejarlo(String manejador) {
-        if(manejador.toLowerCase().equals("g")){
+    protected boolean puedeManejarlo(Usuario usuario) {
+        if(usuario instanceof Gerente){
             return true;
         }
         return false;

@@ -39,21 +39,9 @@ public class ProyectoDS extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //Probando las vistas. Falta darle estetica
-        Usuario g=new Gerente("G");
-        Usuario a=new Administrador("A");
-        Usuario j=new JefeBodega("JB");
-        Usuario v=new Vendedor("V");
+        ViewLogin login=new ViewLogin(primaryStage);
+        login.showMe();
         
-        ViewMenu login=new ViewLogin(primaryStage);        
-        ViewMenu gerente=new ViewGerente(primaryStage);
-        ViewMenu administrador=new ViewAdministrador(primaryStage);
-        ViewMenu jefeBodega=new ViewJefeBodega(primaryStage);
-        ViewMenu vendedor=new ViewVendedor(primaryStage);
-        login.setNext(gerente);gerente.setNext(administrador);administrador.setNext(jefeBodega);jefeBodega.setNext(vendedor);vendedor.setNext(null);
-        
-        CtrlUsuario user=new CtrlUsuario( login,j, primaryStage);
-        user.init();
     }
     
 }/*

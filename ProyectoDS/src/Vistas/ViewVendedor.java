@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import Modelos.Usuario;
+import Modelos.Vendedor;
 import java.util.Map;
 import javafx.stage.Stage;
 
@@ -12,18 +14,15 @@ import javafx.stage.Stage;
  *
  * @author SANTOS
  */
-public class ViewVendedor extends ViewLogin  implements IView{
+public class ViewVendedor extends ViewMenu  implements IView{
     
     public ViewVendedor(Stage stg) {
         super(stg);
     }
 
      @Override
-    protected boolean puedeManejarlo(String manejador) {
-        if(manejador.toLowerCase().equals("v")){
-            return true;
-        }
-        return false;
+    protected boolean puedeManejarlo(Usuario manejador) {
+        return (manejador instanceof Vendedor);
     }
     
     @Override

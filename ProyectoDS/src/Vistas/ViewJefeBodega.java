@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import Modelos.JefeBodega;
+import Modelos.Usuario;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,11 +59,8 @@ public class ViewJefeBodega extends ViewMenu{
         lvEnvios = new ListView<>(envios);
     }
      @Override
-    protected boolean puedeManejarlo(String manejador) {
-        if(manejador.toLowerCase().equals("jb")){
-            return true;
-        }
-        return false;
+    protected boolean puedeManejarlo(Usuario manejador) {
+        return (manejador instanceof JefeBodega);
     }
     @Override
     public void setData(Map mapa) {
@@ -75,8 +74,8 @@ public class ViewJefeBodega extends ViewMenu{
 
     @Override
     public void showMe() {
-this.setUser(super.user);
-        System.out.println("JEFE BODEGAAAA");
+        this.setUser(super.user);
+        System.out.println("JEFE BODEGA");
         super.stg.setTitle("Jefe Bodega! "+super.user);
         super.stg.setScene(super.scene);
         super.stg.show();    }
