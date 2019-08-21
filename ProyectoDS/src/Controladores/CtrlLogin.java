@@ -80,6 +80,7 @@ public class CtrlLogin {
         CtrlUsuario usuario = new CtrlUsuario(user);
         usuario=usuario.getUsuario();
         IManejadorMenu menuUsuario = gerente.pedirManejador(usuario);
+        System.out.println(menuUsuario);
         usuario.setLogin(menuUsuario);
         usuario.init();
     }

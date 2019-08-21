@@ -14,8 +14,10 @@ public class Repartidor extends Persona{
     private RutaDeEntrega ruta;
     private boolean isDisponible;
     
-    public Repartidor(String nombre, String apellidos, String cedula) {
+    public Repartidor(String nombre, String apellidos, String cedula, RutaDeEntrega ruta, boolean isDisponible) {
         super(nombre, apellidos, cedula);
+        this.ruta=ruta;
+        this.isDisponible=isDisponible;
     }
 
     

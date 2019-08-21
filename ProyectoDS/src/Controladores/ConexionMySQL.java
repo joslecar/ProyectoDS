@@ -21,14 +21,14 @@ public class ConexionMySQL {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static Connection conn;
     private final String database = "DSdatabase";
-    private final String hostname = "localhost";
-    private final String port = "3306";
+    private final String hostname = "192.168.99.100";
+    private final String port = "33060";
      // Nombre de usuario
     private final String username = "root";
 
     // Clave de usuario
     
-    private final String password = "root";
+    private final String password = "secret";
     
     // Ruta de nuestra base de datos 
     public final String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database+"?useSSL=false";

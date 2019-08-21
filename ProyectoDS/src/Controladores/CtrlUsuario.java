@@ -60,7 +60,7 @@ public class CtrlUsuario  implements IControl{
     }
     
     public void init(){
-       this.menu.setUser(this);
+//       this.menu.setUser(this);
        this.menu.showMe();
     }
     public void setLogin(IManejadorMenu mm){

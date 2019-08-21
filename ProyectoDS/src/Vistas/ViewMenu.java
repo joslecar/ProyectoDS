@@ -38,12 +38,13 @@ public class ViewMenu implements IManejadorMenu,IView{
 
     @Override
     public IManejadorMenu pedirManejador(CtrlUsuario user) {
-        if(this.puedeManejarlo(user)){
-            return this;
-        }
         if(this.next==null){
             return null;
-        }  
+        } 
+        if(puedeManejarlo(user)){
+            return this;
+        }
+         
         return this.next.pedirManejador(user);
     }
 

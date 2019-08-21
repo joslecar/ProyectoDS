@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import Controladores.CtrlGerente;
+import Controladores.CtrlUsuario;
 import Modelos.Gerente;
 import Modelos.Producto;
 import Modelos.Usuario;
@@ -106,8 +108,8 @@ private void createListView(String tipo){
         return scene;
     }
     
-    protected boolean puedeManejarlo(Usuario usuario) {
-        if(usuario instanceof Gerente){
+    protected boolean puedeManejarlo(CtrlUsuario usuario) {
+        if(usuario instanceof CtrlGerente){
             return true;
         }
         return false;
