@@ -68,7 +68,7 @@ public class ViewGerente extends ViewMenu{
         this.btnVentas = new Button("Ventas");
         this.panel = new BorderPane();
         this.derecho= new VBox();
-        derecho.getChildren().addAll(btnAsignarAdmin,btnUsuarios,btnEnvios,btnProductos,btnVentas,txtBuscarCategoria,btnBuscarCategoria,txtBuscarNombre,btnBuscarNombre,btnAbastecimiento);
+        derecho.getChildren().addAll(btnAsignarAdmin,btnUsuarios,btnEnvios,btnProductos,btnVentas,txtBuscarCategoria,btnBuscarCategoria,txtBuscarNombre,btnBuscarNombre,txtBuscarDescripcion,btnBuscarDescrip,btnAbastecimiento);
         llenarDerecho();
         //llenarCentro();
         super.scene=new Scene(panel,600,500);
@@ -77,6 +77,9 @@ public class ViewGerente extends ViewMenu{
         });
         btnBuscarNombre.setOnAction(e->{
             createListView("Nombre");
+        });
+        btnBuscarDescrip.setOnAction(e->{
+            createListView("Descripcion");
         });
     }
     
@@ -98,7 +101,10 @@ private void createListView(String tipo){
             productos = FXCollections.observableArrayList(user.buscarArticuloCat(txtBuscarCategoria.getText()));
         }else if(tipo.equals("Nombre")){
             productos = FXCollections.observableArrayList(user.buscarArticuloNom(txtBuscarNombre.getText()));
+        }else if(tipo.equals("Descripcion")){
+            productos = FXCollections.observableArrayList(user.buscarArticuloNom(txtBuscarDescripcion.getText()));
         }
+        
         lvProductos = new ListView<>(productos);
         panel.setCenter(lvProductos);
     }
