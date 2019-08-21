@@ -81,10 +81,10 @@ public class CtrlUsuario  implements IControl{
               
         return cargarProductos("select * from Producto where Nombre like '%"+nombre+"%';");
     }
-   /* public List<Producto> buscarArticuloDescp(String descripcion){
+   public List<Producto> buscarArticuloDescp(String descripcion){
        
         return cargarProductos("select * from Producto where Descripcion like '%"+descripcion+"%';");
-    }*/
+    }
     public List<Producto> buscarArticuloCat(String categoria){
         
         return cargarProductos("select * from Producto where Categoria like '%"+categoria+"%';");
@@ -92,7 +92,6 @@ public class CtrlUsuario  implements IControl{
     
     private List<Producto> cargarProductos(String query){
         ConexionMySQL canalSQL=new ConexionMySQL();
-        //cnp=canalSQL.conectarMySQL("192.168.99.100", "33060","DSdatabase", "root", "secret");
         cnp=canalSQL.conectarMySQL();
         Producto p=null;
         List<Producto>products = new ArrayList<>();
@@ -101,7 +100,7 @@ public class CtrlUsuario  implements IControl{
             Statement s = cnp.createStatement();
             ResultSet re = s.executeQuery(query);
             while(re.next()){
-                p=new Producto(re.getString("IDProducto"),re.getString("Nombre"),re.getString("Categoria"),re.getInt("Stock"),re.getDate("FechaIngreso"),re.getString("Marca"),re.getDouble("PrecioCompra"),re.getDouble("PrecioVenta"));
+                p=new Producto(re.getString("IDProducto"),re.getString("Nombre"),re.getString("Categoria"),re.getString("Descripcion"),re.getInt("Stock"),re.getDate("FechaIngreso"),re.getString("Marca"),re.getDouble("PrecioCompra"),re.getDouble("PrecioVenta"));
                 System.out.println(p.toString());
                 products.add(p);
             }
