@@ -140,7 +140,7 @@ private void createListView(String tipo){
    @Override
     public void showMe(){
         System.out.println("GERENTEEEEE");
-        this.setUser(user);
+        this.setUser(super.user);
         super.stg.setTitle("Gerente! "+super.user);
         super.stg.setScene(super.scene);
         super.stg.show();
