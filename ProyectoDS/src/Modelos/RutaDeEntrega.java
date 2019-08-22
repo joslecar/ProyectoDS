@@ -13,5 +13,26 @@ import java.util.List;
  */
 public class RutaDeEntrega {
     private String descripcion;
-    private List<String> envios;
+    private List<Envio> envios;
+
+    public RutaDeEntrega(String descripcion, List<Envio> envios) {
+        this.descripcion = descripcion;
+        this.envios = envios;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public List<Envio> getEnvios() {
+        return envios;
+    }
+
+    public void setEnvios(List<Envio> envios) {
+        this.envios = envios;
+    }
 }

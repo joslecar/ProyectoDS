@@ -18,6 +18,7 @@ import javafx.stage.Stage;
  */
 public class CtrlJefeBodega extends CtrlUsuario{
     private Queue<Repartidor> repartidores=new LinkedList();
+    
     public CtrlJefeBodega(ViewMenu login, Usuario user, Stage stg) {
         super(login, user, stg);
     }
@@ -25,6 +26,8 @@ public class CtrlJefeBodega extends CtrlUsuario{
     public CtrlJefeBodega(Usuario u) {
         super(u);
     }
+    
+    
     
     public void encolarRepartidor(Repartidor r){
         r.setIsDisponible(true);
