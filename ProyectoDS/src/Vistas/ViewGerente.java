@@ -46,14 +46,15 @@ public class ViewGerente extends ViewMenu{
     private Button btnCotizacion;
     private Button btnVenta;
     private Button btnReporteEnvio;
-        private Button btnBuscar;
-        private TextField txtBusqueda;
-        private ListView lvProductos;
-
+    private Button btnBuscar;
+    private TextField txtBusqueda;
+    private ListView lvProductos;
+    private ListView<Usuario> lvUsuarios;
     private VBox derecho;
-
+    private CtrlGerente controladorger;
     public ViewGerente(Stage stg) {
         super(stg);
+        //System.out.println(user.toString());
         txtBuscarNombre=new TextField();
         txtBuscarDescripcion=new TextField();
         txtBuscarCategoria=new TextField();
@@ -83,6 +84,12 @@ public class ViewGerente extends ViewMenu{
         btnBuscarDescrip.setOnAction(e->{
             createListView("Descripcion");
         });
+        
+        btnAsignarAdmin.setOnAction(e->{
+            createListViewEmpleados();
+            lvUsuarios.getSelectionModel().getSelectedItem();
+        });
+        
     }
     
     private void llenarDerecho(){
@@ -110,10 +117,19 @@ private void createListView(String tipo){
         lvProductos = new ListView<>(productos);
         panel.setCenter(lvProductos);
     }
+    private void createListViewEmpleados(){
+        System.out.println(user.toString());
+        CtrlGerente gerente = new CtrlGerente(user.getUsuario());
+        gerente.buscarEmpleados();
+        ObservableList<Usuario> usuarios = FXCollections.observableArrayList(gerente.buscarEmpleados());
+        lvUsuarios = new ListView<>(usuarios);
+        panel.setCenter(lvUsuarios);
+    }
     public Scene getScene() {
         return scene;
     }
     
+    @Override
     protected boolean puedeManejarlo(CtrlUsuario usuario) {
         if(usuario instanceof CtrlGerente){
             return true;

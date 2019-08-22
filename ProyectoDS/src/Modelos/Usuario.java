@@ -10,12 +10,15 @@ package Modelos;
  * @author Jose Leonardo
  */
 public class Usuario {
-    
+    protected String nombre;
+    protected String apellido;
     protected String usuario;
     protected String contrasena;
     
     
-    public Usuario(String usuario) {
+    public Usuario(String nombre, String apellido,String usuario) {
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.usuario = usuario;
     }
     public IUsuario createUsuario(){
@@ -42,9 +45,25 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    
     @Override
     public String toString() {
-        return "Usuario{" + "usuario=" + usuario + ", contrasena=" + contrasena + '}';
+        return nombre + apellido;
     }
     
 }

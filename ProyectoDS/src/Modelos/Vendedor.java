@@ -10,8 +10,8 @@ package Modelos;
  * @author Jose Leonardo
  */
 public class Vendedor extends Usuario{
-    public Vendedor(String usuario) {
-        super(usuario);
+    public Vendedor(String nombre,String apellido,String usuario) {
+        super(nombre,apellido,usuario);
     }
     
 }

@@ -45,7 +45,7 @@ public class CtrlUsuario  implements IControl{
     public CtrlUsuario(Usuario u){
         this.user=u;
     }
-    public  CtrlUsuario getUsuario(){
+    public CtrlUsuario getCtrlUsuario(){
         if(user instanceof Administrador){
             return new CtrlAdministrador(user);
         }else if(user instanceof Gerente){
@@ -58,7 +58,9 @@ public class CtrlUsuario  implements IControl{
         return null;
         
     }
-    
+    public Usuario getUsuario(){
+        return user;
+    }
     public void init(){
 //       this.menu.setUser(this);
        this.menu.showMe();
@@ -110,6 +112,9 @@ public class CtrlUsuario  implements IControl{
        }
         return products;
         
+    }
+    public String toString(){
+        return "Controlador :"+user.toString();
     }
     
 }

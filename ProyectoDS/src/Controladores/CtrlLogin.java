@@ -37,14 +37,12 @@ public class CtrlLogin {
     public Usuario buscarUsuario(String usuario, String pass){
         ConexionMySQL conexion = new ConexionMySQL();
         Connection cnp = conexion.conectarMySQL();
-//cnp = conexion.conectarMySQL("192.168.99.100","33060", "DSdatabase", "root", "secret");
-
         Usuario u = null;
         try{
             Statement s = cnp.createStatement();
             ResultSet re = s.executeQuery("select * from Empleado where usuario ='"+usuario+"' and pass = '"+pass+"'"); 
                 while(re.next()){
-                    u = seleccionarUsuario(new Usuario(re.getString("usuario")),re.getString("Tipo"));
+                    u = seleccionarUsuario(new Usuario(re.getString("Nombre"),re.getString("Apellido"),re.getString("usuario")),re.getString("Tipo"));
                 }
             cnp.close();
         } catch (SQLException ex) {
@@ -57,13 +55,13 @@ public class CtrlLogin {
     public Usuario seleccionarUsuario(Usuario usuario, String tipo){
        switch (tipo) {
            case "VEND-1000":
-               return new Vendedor(usuario.getUsuario());
+               return new Vendedor(usuario.getUsuario(),usuario.getApellido(),usuario.getUsuario());
            case "GER-1000":
-               return new Gerente(usuario.getUsuario());
+               return new Gerente(usuario.getNombre(),usuario.getApellido(),usuario.getUsuario());
            case "ADMIN-100":
-               return new Administrador(usuario.getUsuario());
+               return new Administrador(usuario.getNombre(),usuario.getApellido(),usuario.getUsuario());
            case "JFBOD-100":
-               return new JefeBodega(usuario.getUsuario());
+               return new JefeBodega(usuario.getNombre(),usuario.getApellido(),usuario.getUsuario());
            default:
                break;
        }
@@ -71,14 +69,17 @@ public class CtrlLogin {
     }
     
     public void iniciarViews(Usuario user){
-        
+        CtrlUsuario usuario = new CtrlUsuario(user);
         ViewMenu gerente=new ViewGerente(login.getStage());
         ViewMenu administrador=new ViewAdministrador(login.getStage());
         ViewMenu jefeBodega=new ViewJefeBodega(login.getStage());
         ViewMenu vendedor=new ViewVendedor(login.getStage());
-        gerente.setNext(administrador);administrador.setNext(jefeBodega);jefeBodega.setNext(vendedor);vendedor.setNext(null);
-        CtrlUsuario usuario = new CtrlUsuario(user);
-        usuario=usuario.getUsuario();
+        gerente.setNext(administrador);
+        administrador.setNext(jefeBodega);
+        jefeBodega.setNext(vendedor);
+        vendedor.setNext(null);
+        usuario=usuario.getCtrlUsuario();
+        System.out.println(usuario.toString());
         IManejadorMenu menuUsuario = gerente.pedirManejador(usuario);
         System.out.println(menuUsuario);
         usuario.setLogin(menuUsuario);

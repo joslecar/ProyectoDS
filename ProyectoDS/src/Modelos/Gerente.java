@@ -11,8 +11,8 @@ package Modelos;
  */
 public class Gerente extends Usuario {
     
-    public Gerente(String usuario) {
-        super(usuario);
+    public Gerente(String nombre,String apellido,String usuario) {
+        super(nombre,apellido,usuario);
     }
     public void ConsultarInventario(){
     

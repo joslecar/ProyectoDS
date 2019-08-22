@@ -11,8 +11,8 @@ package Modelos;
  */
 public class Administrador extends Usuario{
     private Local local;
-    public Administrador(String usuario) {
-        super(usuario);
+    public Administrador(String nombre,String apellido,String usuario) {
+        super(nombre,apellido,usuario);
     }
     public boolean CREATE(){
         return false;

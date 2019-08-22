@@ -5,6 +5,7 @@ use DSdatabase;
 create table if not exists Producto(IDProducto varchar(10) PRIMARY KEY, 
 					Categoria varchar(20), 
 					Nombre varchar(50),
+                    Descripcion varchar(300),
                     Stock int,
                     FechaIngreso DateTime,
                     Marca varchar(20),

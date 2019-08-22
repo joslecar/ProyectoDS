@@ -1,10 +1,10 @@
 use DSdatabase;
 #drop database DSdatabase;
 #drop table Producto;
-insert into Producto values("PRDUC-001","Limpieza","PinoClean",20,"2018-01-01","Unilevel",1.50,2.00),
-("PRDUC-002","Juegos","Playstation",20,"2018-01-01","Sony",300.0,350.0),
-("PRDUC-003","Tecnologia","Core i7",20,"2018-02-01","Microsoft",200.0,250.0),
-("PRDUC-004","Tecnologia","Mouse",20,"2018-01-01","Genius",20.0,25.0);
+insert into Producto values("PRDUC-001","Limpieza","PinoClean","Producto de limpieza",20,"2018-01-01","Unilevel",1.50,2.00),
+("PRDUC-002","Juegos","Playstation","Una consola de videojuegos",20,"2018-01-01","Sony",300.0,350.0),
+("PRDUC-003","Tecnologia","Core i7","Un microprocesador",20,"2018-02-01","Microsoft",200.0,250.0),
+("PRDUC-004","Tecnologia","Mouse","Un mouse Genius",20,"2018-01-01","Genius",20.0,25.0);
 
 insert into Cliente values("CLI-0001","Jose","Carrion"),
 ("CLI-0002","Adriana","Murrieta"),

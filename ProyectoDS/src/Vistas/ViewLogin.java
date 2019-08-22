@@ -65,7 +65,7 @@ public class ViewLogin   implements IView{
                 Usuario user=clogin.buscarUsuario(txtUser.getText(), passPass.getText());
                 if(user!=null){
                     clogin.iniciarViews(user);
-                    
+                    System.out.println(user.toString());
                 }else{
                     txtUser.setText("");
                     passPass.setText("");

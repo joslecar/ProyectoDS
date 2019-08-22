@@ -25,8 +25,8 @@ public class JefeBodega extends Usuario{
     private Queue<Repartidor> repartidores;
     Connection cnr=null;
     
-    public JefeBodega(String usuario) {
-        super(usuario);
+    public JefeBodega(String nombre,String apellido,String usuario) {
+        super(nombre,apellido,usuario);
     }
     
      private List<Repartidor> cargarRepartidores(){

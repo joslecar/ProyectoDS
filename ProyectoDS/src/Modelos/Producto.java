@@ -16,7 +16,7 @@ import java.sql.Date;
 public class Producto {
     String IDProducto;
     String Nombre;    
-    //String Descripcion;
+    String Descripcion;
     String Categoria;
     int stock;
     Date FechaIngreso; 
@@ -24,10 +24,10 @@ public class Producto {
     double PrecioCompra;
     double PrecioVenta;
 
-    public Producto(String IDProducto, String Nombre, String Categoria, int stock, Date FechaIngreso, String Marca, double PrecioCompra, double PrecioVenta) {
+    public Producto(String IDProducto, String Nombre, String Categoria, String Descripcion,int stock, Date FechaIngreso, String Marca, double PrecioCompra, double PrecioVenta) {
         this.IDProducto = IDProducto;
         this.Nombre = Nombre;
-        //this.Descripcion=Descripcion;
+        this.Descripcion=Descripcion;
         this.Categoria = Categoria;
         this.stock = stock;
         this.FechaIngreso = FechaIngreso;
@@ -36,13 +36,13 @@ public class Producto {
         this.PrecioVenta = PrecioVenta;
     }
     
-    /*public String getDescripcion() {
+    public String getDescripcion() {
         return Descripcion;
     }
 
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
-    }*/
+    }
     
     public String getIDProducto() {
         return IDProducto;
