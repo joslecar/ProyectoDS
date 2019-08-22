@@ -10,6 +10,8 @@ import Controladores.CtrlVendedor;
 import Modelos.Usuario;
 import Modelos.Vendedor;
 import java.util.Map;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -17,9 +19,19 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class ViewVendedor extends ViewMenu  {
+    private Button btnSalir;
+    private BorderPane panel;
+    private ViewLogin login;
     
     public ViewVendedor(Stage stg) {
         super(stg);
+        panel = new BorderPane();
+        btnSalir = new Button("Salir");
+        panel.setBottom(btnSalir);
+        btnSalir.setOnAction(e->{
+            login = new ViewLogin(stg);
+            login.showMe();
+        });
     }
 
      @Override

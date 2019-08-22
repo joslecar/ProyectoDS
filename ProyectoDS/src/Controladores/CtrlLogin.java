@@ -21,6 +21,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,25 +32,37 @@ import java.util.logging.Logger;
  */
 public class CtrlLogin {
     private ViewLogin login;
-    
+    public static List<Usuario> empleados;
     public CtrlLogin(ViewLogin login){
         this.login=login;
     }
     public Usuario buscarUsuario(String usuario, String pass){
-        ConexionMySQL conexion = new ConexionMySQL();
-        Connection cnp = conexion.conectarMySQL();
-        Usuario u = null;
-        try{
-            Statement s = cnp.createStatement();
-            ResultSet re = s.executeQuery("select * from Empleado where usuario ='"+usuario+"' and pass = '"+pass+"'"); 
-                while(re.next()){
-                    u = seleccionarUsuario(new Usuario(re.getString("Nombre"),re.getString("Apellido"),re.getString("usuario")),re.getString("Tipo"));
-                }
-            cnp.close();
-        } catch (SQLException ex) {
-           Logger.getLogger(CtrlUsuario.class.getName()).log(Level.SEVERE, null, ex);
-       }
-        return u;
+        if(comprobarUsuario(usuario) != null){
+            return comprobarUsuario(usuario);
+        }else{
+            ConexionMySQL conexion = new ConexionMySQL();
+            Connection cnp = conexion.conectarMySQL();
+            Usuario u = null;
+            try{
+                Statement s = cnp.createStatement();
+                ResultSet re = s.executeQuery("select * from Empleado where usuario ='"+usuario+"' and pass = '"+pass+"'"); 
+                    while(re.next()){
+                        u = seleccionarUsuario(new Usuario(re.getString("Nombre"),re.getString("Apellido"),re.getString("usuario")),re.getString("Tipo"));
+                    }
+                cnp.close();
+            }catch (SQLException ex) {
+                Logger.getLogger(CtrlUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return u;
+        }
+    }
+    public Usuario comprobarUsuario(String usuario){
+        empleados = new ArrayList<>();
+        for(Usuario u:empleados){
+            if(u.getUsuario().equals(usuario))
+                return u;
+        }
+        return null;
     }
     
     

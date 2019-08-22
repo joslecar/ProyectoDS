@@ -47,10 +47,12 @@ public class ViewGerente extends ViewMenu{
     private Button btnVenta;
     private Button btnReporteEnvio;
     private Button btnBuscar;
+    private Button btnSalir;
     private TextField txtBusqueda;
     private ListView lvProductos;
     private ListView<Usuario> lvUsuarios;
     private VBox derecho;
+    private ViewLogin login;
     private CtrlGerente controladorger;
     public ViewGerente(Stage stg) {
         super(stg);
@@ -58,7 +60,7 @@ public class ViewGerente extends ViewMenu{
         txtBuscarNombre=new TextField();
         txtBuscarDescripcion=new TextField();
         txtBuscarCategoria=new TextField();
-        
+        btnSalir = new Button("Salir");
         btnBuscarNombre=new Button("Buscar por Nombre");
         btnBuscarDescrip=new Button("Buscar por Descripcion");
         btnBuscarCategoria=new Button("Buscar por Categoria");
@@ -71,8 +73,10 @@ public class ViewGerente extends ViewMenu{
         this.btnVentas = new Button("Ventas");
         this.panel = new BorderPane();
         this.derecho= new VBox();
+        //controladorger = new CtrlGerente(user.getUsuario());
         derecho.getChildren().addAll(btnAsignarAdmin,btnUsuarios,btnEnvios,btnProductos,btnVentas,txtBuscarCategoria,btnBuscarCategoria,txtBuscarNombre,btnBuscarNombre,txtBuscarDescripcion,btnBuscarDescrip,btnAbastecimiento);
         llenarDerecho();
+        panel.setBottom(btnSalir);
         //llenarCentro();
         super.scene=new Scene(panel,600,500);
         btnBuscarCategoria.setOnAction(e->{
@@ -87,9 +91,14 @@ public class ViewGerente extends ViewMenu{
         
         btnAsignarAdmin.setOnAction(e->{
             createListViewEmpleados();
-            lvUsuarios.getSelectionModel().getSelectedItem();
+            
+        });
+        btnSalir.setOnAction(e->{
+            login = new ViewLogin(stg);
+            login.showMe();
         });
         
+ 
     }
     
     private void llenarDerecho(){
@@ -100,7 +109,6 @@ public class ViewGerente extends ViewMenu{
 
     }
 private void llenarCentro(){
-    
     panel.setCenter(lvProductos);
 }
 private void createListView(String tipo){
@@ -124,6 +132,10 @@ private void createListView(String tipo){
         ObservableList<Usuario> usuarios = FXCollections.observableArrayList(gerente.buscarEmpleados());
         lvUsuarios = new ListView<>(usuarios);
         panel.setCenter(lvUsuarios);
+        lvUsuarios.setOnMouseClicked(e->{
+            gerente.asignarAdmin(lvUsuarios.getSelectionModel().getSelectedItem());
+        });
+        
     }
     public Scene getScene() {
         return scene;

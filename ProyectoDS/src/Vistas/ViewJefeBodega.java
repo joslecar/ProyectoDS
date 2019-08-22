@@ -12,6 +12,7 @@ import Modelos.Usuario;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -26,30 +27,41 @@ import javafx.stage.Stage;
 public class ViewJefeBodega extends ViewMenu{
     private Button crearRuta;
     private Button novEnvio;
+    private Button btnSalir;
     private VBox botones;
     private BorderPane panel;
     private ListView<String> lvEnvios;
-
+    private ViewLogin login;
             
     public ViewJefeBodega( Stage stg) {
         super( stg);
        createListView();
         crearRuta= new Button("Crear Ruta");
         novEnvio= new Button("Novedades de Envio");
+        btnSalir = new Button("Salir");
         botones=new VBox();
         panel=new BorderPane();
         setRigth();
         setCenter();
+        setBottom();
         super.scene=new Scene(panel,300,300);
     }
     
     private void setRigth(){
         botones.getChildren().addAll(crearRuta,novEnvio);
+        botones.setPadding(new Insets(10,10,10,10));
         panel.setRight(botones);
     }
     
     private void setCenter(){
         panel.setCenter(lvEnvios);
+    }
+    private void setBottom(){
+        panel.setBottom(btnSalir);
+        btnSalir.setOnAction(e->{
+            login = new ViewLogin(stg);
+            login.showMe();
+        });
     }
     private void createListView(){
          // To Creating a Observable List

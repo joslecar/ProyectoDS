@@ -54,6 +54,8 @@ public class CtrlGerente extends CtrlUsuario{
     }
     public void asignarAdmin(Usuario usuario){
         usuario = new Administrador(usuario.getNombre(),usuario.getApellido(),usuario.getUsuario());
+        CtrlLogin.empleados.add(usuario);
+        System.out.println("Se anadio "+usuario.getNombre());
     }
     
 }

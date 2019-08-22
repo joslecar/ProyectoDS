@@ -25,25 +25,35 @@ import javafx.stage.Stage;
 public class ViewAdministrador extends ViewMenu{
     private Button ingStock;
     private Button ingPVP;
+    private Button btnSalir;
     private VBox botones;
     private BorderPane panel;
-    
+    private ViewLogin login;
     public ViewAdministrador( Stage stg) {
         super( stg);
        
         ingStock= new Button("Ingresar Stock");
         ingPVP= new Button("Ingresar PVP");
+        btnSalir = new Button("Salir");
         botones=new VBox();
         panel=new BorderPane();
         setRigth();
+        setBottom();
         super.scene=new Scene(panel,300,300);
+        
     }
     
     private void setRigth(){
         botones.getChildren().addAll(ingStock,ingPVP);
         panel.setRight(botones);
     }
-
+    private void setBottom(){
+        panel.setBottom(btnSalir);
+        btnSalir.setOnAction(e->{
+            login = new ViewLogin(stg);
+            login.showMe();
+        });
+    }
      @Override
     protected boolean puedeManejarlo(CtrlUsuario manejador) {
         return (manejador instanceof CtrlAdministrador);

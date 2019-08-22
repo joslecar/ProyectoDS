@@ -40,7 +40,7 @@ public class CtrlUsuario  implements IControl{
         this.menu = login;
         this.menu.setUser(this);
         this.user = user;
-        this.stg=stg;
+        this.stg = stg;
     }
     public CtrlUsuario(Usuario u){
         this.user=u;
@@ -62,8 +62,8 @@ public class CtrlUsuario  implements IControl{
         return user;
     }
     public void init(){
-      this.menu.setUser(this);
-       this.menu.showMe();
+        this.menu.setUser(this);
+        this.menu.showMe();
     }
     public void setLogin(IManejadorMenu mm){
         this.menu=(ViewMenu) mm;

@@ -20,7 +20,6 @@ public class ViewMenu implements IManejadorMenu,IView{
     protected CtrlUsuario user;
     protected Stage stg;
     protected Scene scene;
-
     public ViewMenu(Stage stg) {   
         this.stg = stg;
         this.scene = null;

@@ -31,7 +31,6 @@ public class JefeBodega extends Usuario{
     
      private List<Repartidor> cargarRepartidores(){
         ConexionMySQL canalSQL=new ConexionMySQL();
-        //cnp=canalSQL.conectarMySQL("192.168.99.100", "33060","DSdatabase", "root", "secret");
         cnr=canalSQL.conectarMySQL();
         Repartidor r;
         List<Repartidor>repartidores = new ArrayList<>();
