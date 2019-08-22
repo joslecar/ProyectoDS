@@ -12,12 +12,52 @@ package Modelos;
 public class Repartidor extends Persona{
     
     private RutaDeEntrega ruta;
-    private boolean isDisponible;
+    private boolean disponible;
     
     public Repartidor(String nombre, String apellidos, String cedula, RutaDeEntrega ruta, boolean isDisponible) {
         super(nombre, apellidos, cedula);
         this.ruta=ruta;
-        this.isDisponible=isDisponible;
+        this.disponible=isDisponible;
+    }
+
+    public RutaDeEntrega getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(RutaDeEntrega ruta) {
+        this.ruta = ruta;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setIsDisponible(boolean isDisponible) {
+        this.disponible = isDisponible;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     
