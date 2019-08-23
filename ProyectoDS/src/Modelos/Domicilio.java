@@ -9,11 +9,11 @@ import java.util.List;
 
 /**
  *
- * @author Jose Leonardo
+ * @author User-PC
  */
-class Abastecimiento extends Envio{
+public class Domicilio extends Envio{
     
-    public Abastecimiento(List<Producto> products, boolean estado) {
+    public Domicilio(List<Producto> products, boolean estado) {
         super(products, estado);
     }
     

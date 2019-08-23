@@ -5,15 +5,36 @@
  */
 package Modelos;
 
+import java.util.List;
+
 /**
  *
  * @author CltControl
  */
 public class Envio {
 
-    //cliente
-    //venta
-   // repartidor
-     
+   private List<Producto>products;
+   private boolean estado;  
+
+    public Envio(List<Producto> products, boolean estado) {
+        this.products = products;
+        this.estado = estado;
+    }
+
+    public List<Producto> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Producto> products) {
+        this.products = products;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
     
 }
