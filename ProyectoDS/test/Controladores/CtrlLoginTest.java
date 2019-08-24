@@ -58,7 +58,22 @@ public class CtrlLoginTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-
+    /**
+     * Valida el caso en que retorna Null al no encontrar un usuario dentro de la BD
+     */
+@Test
+    public void testBuscarUsuario1() {
+        System.out.println("buscarUsuario");
+        String usuario = "leonardoc";
+        String pass = "leon1959";
+        
+        CtrlLogin instance = new CtrlLogin(new ViewLogin(new Stage()));
+        
+        Usuario result = instance.buscarUsuario(usuario, pass);
+        assertNull(result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
     /**
      * Test of comprobarUsuario method, of class CtrlLogin.
      */

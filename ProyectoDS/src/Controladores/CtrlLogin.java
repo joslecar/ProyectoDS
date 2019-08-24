@@ -92,7 +92,7 @@ public class CtrlLogin {
         administrador.setNext(jefeBodega);
         jefeBodega.setNext(vendedor);
         vendedor.setNext(null);
-        usuario=usuario.getCtrlUsuario();
+        usuario=CtrlUsuario.getCtrlUsuario();
         System.out.println(usuario.toString());
         IManejadorMenu menuUsuario = gerente.pedirManejador(usuario);
         System.out.println(menuUsuario);

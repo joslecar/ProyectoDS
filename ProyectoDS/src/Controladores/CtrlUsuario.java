@@ -33,7 +33,7 @@ import javafx.stage.Stage;
 public class CtrlUsuario  implements IControl{
    Connection cnp=null;
    private ViewMenu menu;
-   private Usuario user;
+   private static Usuario user;
    private Stage stg;
 
     public CtrlUsuario(ViewMenu login,Usuario user,Stage stg) {
@@ -45,15 +45,18 @@ public class CtrlUsuario  implements IControl{
     public CtrlUsuario(Usuario u){
         this.user=u;
     }
-    public CtrlUsuario getCtrlUsuario(){
-        if(user instanceof Administrador){
-            return new CtrlAdministrador(user);
-        }else if(user instanceof Gerente){
-            return new CtrlGerente(user);
-        }else if(user instanceof JefeBodega){
-            return new CtrlJefeBodega(user);
-        }else if (user instanceof Vendedor){
-            return new CtrlVendedor(user);
+    public static CtrlUsuario getCtrlUsuario(){
+        Usuario userC=CtrlUsuario.user;
+        if(userC!=null){
+        if(userC instanceof Administrador){
+            return new CtrlAdministrador(userC);
+        }else if(userC instanceof Gerente){
+            return new CtrlGerente(userC);
+        }else if(userC instanceof JefeBodega){
+            return new CtrlJefeBodega(userC);
+        }else if (userC instanceof Vendedor){
+            return new CtrlVendedor(userC);
+        }
         }
         return null;
         
