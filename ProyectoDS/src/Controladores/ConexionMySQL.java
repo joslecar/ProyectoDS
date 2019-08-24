@@ -31,7 +31,7 @@ public class ConexionMySQL {
     // Clave de usuario
     
     private final static String PASSMY = "secret";
-    
+
     // Ruta de nuestra base de datos 
     public final static String URL = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DATABASE+"?useSSL=false";
 

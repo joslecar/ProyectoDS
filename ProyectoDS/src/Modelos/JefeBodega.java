@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.logging.Level;
@@ -48,5 +50,17 @@ public class JefeBodega extends Usuario{
         return rept;
         
     }
+     
+     Queue<Repartidor> repartidoresDisponibles(){
+        Queue<Repartidor>r=new LinkedList();
+        Iterator<Repartidor> it = cargarRepartidores().iterator();
+        while(it.hasNext()){
+            Repartidor re = it.next();
+            if(re.isDisponible())
+                r.offer(re);
+        }
+        
+        return r;
+    }                                                                                               
    
 }

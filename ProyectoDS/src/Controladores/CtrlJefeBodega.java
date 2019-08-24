@@ -5,8 +5,11 @@
  */
 package Controladores;
 
+import Modelos.Repartidor;
 import Modelos.Usuario;
 import Vistas.ViewMenu;
+import java.util.LinkedList;
+import java.util.Queue;
 import javafx.stage.Stage;
 
 /**
@@ -14,6 +17,7 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class CtrlJefeBodega extends CtrlUsuario{
+    private Queue<Repartidor> repartidores=new LinkedList();
     
     public CtrlJefeBodega(ViewMenu login, Usuario user, Stage stg) {
         super(login, user, stg);
@@ -23,4 +27,16 @@ public class CtrlJefeBodega extends CtrlUsuario{
         super(u);
     }
     
+    
+    
+    public void encolarRepartidor(Repartidor r){
+        r.setIsDisponible(true);
+        repartidores.offer(r);
+        
+    }
+    
+    public void desencolarRepartidor(){
+        Repartidor r=repartidores.poll();
+        r.setIsDisponible(false);
+    }
 }

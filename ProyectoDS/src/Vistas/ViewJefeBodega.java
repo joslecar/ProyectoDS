@@ -35,7 +35,7 @@ public class ViewJefeBodega extends ViewMenu{
             
     public ViewJefeBodega( Stage stg) {
         super( stg);
-       createListView();
+        createListView();
         crearRuta= new Button("Crear Ruta");
         novEnvio= new Button("Novedades de Envio");
         btnSalir = new Button("Salir");
