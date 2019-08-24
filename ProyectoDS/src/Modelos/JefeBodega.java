@@ -30,24 +30,22 @@ public class JefeBodega extends Usuario{
     }
     
      private List<Repartidor> cargarRepartidores(){
-        ConexionMySQL canalSQL=new ConexionMySQL();
-        cnr=canalSQL.conectarMySQL();
+        cnr=ConexionMySQL.conectarMySQL();
         Repartidor r;
-        List<Repartidor>repartidores = new ArrayList<>();
+        List<Repartidor> rept = new ArrayList<>();
         
-        try{
-            Statement s = cnr.createStatement();
-            ResultSet re = s.executeQuery("select * from Repartidor");
-            while(re.next()){
-                r=new Repartidor(re.getString("Nombre"),re.getString("Apellido"),re.getString("Cedula"),null,true);
-                System.out.println(r.toString());
-                repartidores.add(r);
+        try(Statement s = cnr.createStatement()){   
+            try (ResultSet re = s.executeQuery("select * from Repartidor")) {
+                while(re.next()){
+                    r=new Repartidor(re.getString("Nombre"),re.getString("Apellido"),re.getString("Cedula"),null,true);
+                    System.out.println(r.toString());
+                    rept.add(r);
+                }
             }
-            cnr.close();
         } catch (SQLException ex) {
            Logger.getLogger(CtrlUsuario.class.getName()).log(Level.SEVERE, null, ex);
        }
-        return repartidores;
+        return rept;
         
     }
    

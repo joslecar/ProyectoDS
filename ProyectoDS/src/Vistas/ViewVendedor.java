@@ -7,8 +7,6 @@ package Vistas;
 
 import Controladores.CtrlUsuario;
 import Controladores.CtrlVendedor;
-import Modelos.Usuario;
-import Modelos.Vendedor;
 import java.util.Map;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -19,8 +17,8 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class ViewVendedor extends ViewMenu  {
-    private Button btnSalir;
-    private BorderPane panel;
+    private final Button btnSalir;
+    private final BorderPane panel;
     private ViewLogin login;
     
     public ViewVendedor(Stage stg) {

@@ -23,11 +23,11 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class ViewAdministrador extends ViewMenu{
-    private Button ingStock;
-    private Button ingPVP;
-    private Button btnSalir;
-    private VBox botones;
-    private BorderPane panel;
+    private final Button ingStock;
+    private final Button ingPVP;
+    private final Button btnSalir;
+    private final VBox botones;
+    private final BorderPane panel;
     private ViewLogin login;
     public ViewAdministrador( Stage stg) {
         super( stg);

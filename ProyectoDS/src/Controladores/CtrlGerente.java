@@ -6,7 +6,6 @@
 package Controladores;
 
 import Modelos.Administrador;
-import Modelos.Producto;
 import Modelos.Usuario;
 import Vistas.ViewMenu;
 import java.sql.ResultSet;
@@ -32,20 +31,18 @@ public class CtrlGerente extends CtrlUsuario{
     }
     
     public List<Usuario> buscarEmpleados(){
-        ConexionMySQL canalSQL=new ConexionMySQL();
-        cnp=canalSQL.conectarMySQL();
+        cnp=ConexionMySQL.conectarMySQL();
         Usuario u;
         List<Usuario> usuarios = new ArrayList<>();
         String query = "select * from Empleado";
-        try{
-            Statement s = cnp.createStatement();
-            ResultSet re = s.executeQuery(query);
-            while(re.next()){
-                u =new Usuario(re.getString("Nombre"),re.getString("Apellido"),re.getString("usuario"));
-                System.out.println(u.toString());
-                usuarios.add(u);
+        try(Statement s = cnp.createStatement()){   
+            try (ResultSet re = s.executeQuery(query)) {
+                while(re.next()){
+                    u =new Usuario(re.getString("Nombre"),re.getString("Apellido"),re.getString("usuario"));
+                    System.out.println(u.toString());
+                    usuarios.add(u);
+                }
             }
-            cnp.close();
         } catch (SQLException ex) {
            Logger.getLogger(CtrlUsuario.class.getName()).log(Level.SEVERE, null, ex);
        }

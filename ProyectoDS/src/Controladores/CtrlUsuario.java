@@ -22,8 +22,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 /**
@@ -93,26 +91,25 @@ public class CtrlUsuario  implements IControl{
     }
     
     private List<Producto> cargarProductos(String query){
-        ConexionMySQL canalSQL=new ConexionMySQL();
-        cnp=canalSQL.conectarMySQL();
-        Producto p=null;
+        cnp=ConexionMySQL.conectarMySQL();
+        Producto p;
         List<Producto>products = new ArrayList<>();
         
-        try{
-            Statement s = cnp.createStatement();
-            ResultSet re = s.executeQuery(query);
-            while(re.next()){
-                p=new Producto(re.getString("IDProducto"),re.getString("Nombre"),re.getString("Categoria"),re.getString("Descripcion"),re.getInt("Stock"),re.getDate("FechaIngreso"),re.getString("Marca"),re.getDouble("PrecioCompra"),re.getDouble("PrecioVenta"));
-                System.out.println(p.toString());
-                products.add(p);
+        try(Statement s = cnp.createStatement()){
+            try (ResultSet re = s.executeQuery(query)) {
+                while(re.next()){
+                    p=new Producto(re.getString("IDProducto"),re.getString("Nombre"),re.getString("Categoria"),re.getString("Descripcion"),re.getInt("Stock"),re.getDate("FechaIngreso"),re.getString("Marca"),re.getDouble("PrecioCompra"),re.getDouble("PrecioVenta"));
+                    System.out.println(p.toString());
+                    products.add(p);
+                }
             }
-            cnp.close();
         } catch (SQLException ex) {
            Logger.getLogger(CtrlUsuario.class.getName()).log(Level.SEVERE, null, ex);
        }
         return products;
         
     }
+   @Override
     public String toString(){
         return "Controlador :"+user.toString();
     }

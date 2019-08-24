@@ -6,7 +6,6 @@
 package Vistas;
 
 import Controladores.CtrlUsuario;
-import Modelos.Usuario;
 import java.util.Map;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

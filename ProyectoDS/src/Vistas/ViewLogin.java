@@ -26,14 +26,14 @@ import javafx.stage.Stage;
 public class ViewLogin   implements IView{
     private CtrlLogin clogin;
     
-    private Stage stg;
-    private Label lblUser;
-    private Label lblPass;
-    private TextField txtUser;
-    private PasswordField passPass;
-    private Button btnIniSesion;
-    private GridPane panel;
-    private Scene scene;
+    private final Stage stg;
+    private final Label lblUser;
+    private final Label lblPass;
+    private final TextField txtUser;
+    private final PasswordField passPass;
+    private final Button btnIniSesion;
+    private final GridPane panel;
+    private final Scene scene;
    
     public ViewLogin( Stage stg){
         this.stg=stg;

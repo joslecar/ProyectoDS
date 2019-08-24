@@ -29,34 +29,27 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class ViewGerente extends ViewMenu{
-    private BorderPane panel;
+    private final BorderPane panel;
     private Scene scene;
-    private Button btnAbastecimiento;
-    private Button btnAsignarAdmin;
-    private Button btnUsuarios;
-    private Button btnEnvios;
-    private Button btnProductos;
-    private Button btnVentas;
-    private TextField txtBuscarNombre;
-    private TextField txtBuscarCategoria;
-    private TextField txtBuscarDescripcion;
-    private Button btnBuscarNombre;
-    private Button btnBuscarDescrip;
-    private Button btnBuscarCategoria;
-    private Button btnCotizacion;
-    private Button btnVenta;
-    private Button btnReporteEnvio;
-    private Button btnBuscar;
-    private Button btnSalir;
-    private TextField txtBusqueda;
+    private final Button btnAbastecimiento;
+    private final Button btnAsignarAdmin;
+    private final Button btnUsuarios;
+    private final Button btnEnvios;
+    private final Button btnProductos;
+    private final Button btnVentas;
+    private final TextField txtBuscarNombre;
+    private final TextField txtBuscarCategoria;
+    private final TextField txtBuscarDescripcion;
+    private final Button btnBuscarNombre;
+    private final Button btnBuscarDescrip;
+    private final Button btnBuscarCategoria;
+    private final Button btnSalir;
     private ListView lvProductos;
     private ListView<Usuario> lvUsuarios;
-    private VBox derecho;
+    private final VBox derecho;
     private ViewLogin login;
-    private CtrlGerente controladorger;
     public ViewGerente(Stage stg) {
         super(stg);
-        //System.out.println(user.toString());
         txtBuscarNombre=new TextField();
         txtBuscarDescripcion=new TextField();
         txtBuscarCategoria=new TextField();
@@ -79,6 +72,11 @@ public class ViewGerente extends ViewMenu{
         panel.setBottom(btnSalir);
         //llenarCentro();
         super.scene=new Scene(panel,600,500);
+        manejarBotones(stg);
+        
+ 
+    }
+    private void manejarBotones(Stage stg){
         btnBuscarCategoria.setOnAction(e->{
             createListView("Categoria");
         });
@@ -97,8 +95,6 @@ public class ViewGerente extends ViewMenu{
             login = new ViewLogin(stg);
             login.showMe();
         });
-        
- 
     }
     
     private void llenarDerecho(){
@@ -108,10 +104,10 @@ public class ViewGerente extends ViewMenu{
         panel.setRight(derecho);
 
     }
-private void llenarCentro(){
-    panel.setCenter(lvProductos);
-}
-private void createListView(String tipo){
+    private void llenarCentro(){
+        panel.setCenter(lvProductos);
+    }
+    private void createListView(String tipo){
          // To Creating a Observable List
         ObservableList<Producto> productos = FXCollections.observableArrayList();
         if(tipo.equals("Categoria")){
@@ -143,10 +139,7 @@ private void createListView(String tipo){
     
     @Override
     protected boolean puedeManejarlo(CtrlUsuario usuario) {
-        if(usuario instanceof CtrlGerente){
-            return true;
-        }
-        return false;
+        return usuario instanceof CtrlGerente;
     }
     
    @Override

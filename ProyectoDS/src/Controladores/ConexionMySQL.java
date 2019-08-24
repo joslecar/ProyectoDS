@@ -8,6 +8,8 @@ package Controladores;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,43 +22,27 @@ public class ConexionMySQL {
     // Librería de MySQL
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static Connection conn;
-    private final String database = "DSdatabase";
-    private final String hostname = "192.168.99.100";
-    private final String port = "33060";
+    private final static String DATABASE = "DSdatabase";
+    private final static String HOSTNAME = "192.168.99.100";
+    private final static String PORT = "33060";
      // Nombre de usuario
-    private final String username = "root";
+    private final static String USERNAME = "root";
 
     // Clave de usuario
     
-    private final String password = "secret";
+    private final static String PASSMY = "secret";
     
     // Ruta de nuestra base de datos 
-    public final String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database+"?useSSL=false";
+    public final static String URL = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DATABASE+"?useSSL=false";
 
     //Metodo para iniciar la conexion
-    public Connection conectarMySQL() {
-        conn = null;
-
+    public static Connection conectarMySQL() {
         try {
             Class.forName(DRIVER);
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            conn = DriverManager.getConnection(URL, USERNAME, PASSMY);
+        } catch (SQLException | ClassNotFoundException e) {
+            Logger.getLogger(ConexionMySQL.class.getName()).log(Level.SEVERE, null, e);
         }
-
-        return conn;
-    }
-    //Metodo para iniciar la conexion
-    public Connection conectarMySQL(String hostname, String port,String database, String username, String password) {
-        conn = null;
-        String url = "jdbc:mysql://"+ hostname +":"+port+"/"+database+"?useSSL=false";
-        try {
-            Class.forName(DRIVER);
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
         return conn;
     }
     //Metodo para cerrar la conexion

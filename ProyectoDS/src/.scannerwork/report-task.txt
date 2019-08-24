@@ -2,10 +2,5 @@ projectKey=P02G09
 serverUrl=http://200.126.12.164
 serverVersion=6.7.6.38781
 dashboardUrl=http://200.126.12.164/dashboard/index/P02G09
-<<<<<<< HEAD
-ceTaskId=AWynrMetLm5p6v1cuI0j
-ceTaskUrl=http://200.126.12.164/api/ce/task?id=AWynrMetLm5p6v1cuI0j
-=======
-ceTaskId=AWyoKFd9Lm5p6v1cuI1D
-ceTaskUrl=http://200.126.12.164/api/ce/task?id=AWyoKFd9Lm5p6v1cuI1D
->>>>>>> 8cb73642e559298377242b4c6252dcc5bbcc2d80
+ceTaskId=AWzB2P5uLm5p6v1cuI60
+ceTaskUrl=http://200.126.12.164/api/ce/task?id=AWzB2P5uLm5p6v1cuI60

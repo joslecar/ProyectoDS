@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  * @author SANTOS
  */
 public class CtrlLogin {
-    private ViewLogin login;
+    private final ViewLogin login;
     public static List<Usuario> empleados;
     public CtrlLogin(ViewLogin login){
         this.login=login;
@@ -40,18 +40,17 @@ public class CtrlLogin {
         if(comprobarUsuario(usuario) != null){
             return comprobarUsuario(usuario);
         }else{
-            ConexionMySQL conexion = new ConexionMySQL();
-            Connection cnp = conexion.conectarMySQL();
+            Connection cnp = ConexionMySQL.conectarMySQL();
             Usuario u = null;
-            try{
-                Statement s = cnp.createStatement();
-                ResultSet re = s.executeQuery("select * from Empleado where usuario ='"+usuario+"' and pass = '"+pass+"'"); 
+            try(Statement s = cnp.createStatement()){
+                try (ResultSet re = s.executeQuery("select * from Empleado where usuario ='"+usuario+"' and pass = '"+pass+"'")) { 
                     while(re.next()){
                         u = seleccionarUsuario(new Usuario(re.getString("Nombre"),re.getString("Apellido"),re.getString("usuario")),re.getString("Tipo"));
                     }
-                cnp.close();
+                }
             }catch (SQLException ex) {
                 Logger.getLogger(CtrlUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
             }
             return u;
         }

@@ -34,17 +34,17 @@ public class ViewBusquedas  implements IView{
     //setWrapText para multilinea
     private Label lblProductoEncontrado;
     
-    private Button btnBuscarNombre;
-    private Button btnBuscarDescrip;
-    private Button btnBuscarCategoria;
+    private final Button btnBuscarNombre;
+    private final Button btnBuscarDescrip;
+    private final Button btnBuscarCategoria;
     private Button btnCotizacion;
     private Button btnVenta;
     private Button btnReporteEnvio;
     
-    private HBox columnas;
-    private VBox filas;
+    private final HBox columnas;
+    private final VBox filas;
     
-    private Scene sc;
+    private final Scene sc;
     
     private CtrlUsuario user;
     private List<Producto> products;

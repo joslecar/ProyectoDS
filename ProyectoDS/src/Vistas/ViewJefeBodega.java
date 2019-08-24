@@ -25,11 +25,11 @@ import javafx.stage.Stage;
  * @author SANTOS
  */
 public class ViewJefeBodega extends ViewMenu{
-    private Button crearRuta;
-    private Button novEnvio;
-    private Button btnSalir;
-    private VBox botones;
-    private BorderPane panel;
+    private final Button crearRuta;
+    private final Button novEnvio;
+    private final Button btnSalir;
+    private final VBox botones;
+    private final BorderPane panel;
     private ListView<String> lvEnvios;
     private ViewLogin login;
             
